@@ -16,6 +16,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
+          key: ${{ secrets.key }}
           script: |
             cd /home/sabj8295/Sabilunnashr/
             git pull origin main
