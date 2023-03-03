@@ -1,13 +1,13 @@
-import React, { FC } from "react";
+import React, { ReactNode } from "react";
 
 interface LayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-const Layout: FC<LayoutProps> = ({ children }) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className=" w-full h-screen overflow-auto bg-color1">
-      <div className=" w-full min-h-screen overflow-auto">{children}</div>
+    <div className=" w-full h-screen overflow-auto ">
+      <div className="w-full h-full bg-color1 overflow-auto">{children}</div>
     </div>
   );
 };
