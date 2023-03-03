@@ -2,8 +2,10 @@ import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
 
 import Instagram from "../assets/instagram.svg";
-import Adab from "../assets/adab.svg";
 import Dzikir from "../assets/dzikir.svg";
+import Masjid from "../assets/masjid.svg";
+import Wudlu from "../assets/wudlu.svg";
+import Adab from "../assets/adab.svg";
 import { FiEdit3 } from "react-icons/fi";
 
 const Home = () => {
@@ -11,7 +13,13 @@ const Home = () => {
     <Layout>
       <Navbar />
       <div id="Home" className="flex bg-color4 pb-20">
-        <div className="w-4/12 bg-green-200"></div>
+        <div className="w-4/12 relative">
+          <img
+            src={Masjid}
+            alt="masjid.svg"
+            className="w-9/12 absolute top-0 left-0"
+          />
+        </div>
 
         <div className="w-8/12 pt-16 px-16 text-color1">
           <p className="text-[40px] font-semibold">Sabilun Nashr</p>
@@ -142,8 +150,43 @@ const Home = () => {
       </div>
 
       <div className="flex bg-color1 text-color5 text-[16px] pt-10 pb-10">
-        <div></div>
-        <div></div>
+        <div className="w-7/12 pl-20 pr-14 text-justify">
+          <p>
+            Asy-Syaikh Hasan bin Ahmad Al-Kaf merincikan syarat keadaan tidur
+            yang tidak membatalkan wudlu :
+          </p>
+          <ul className="list-decimal list-inside mt-6 leading-loose">
+            <li>
+              Tidur dalam keadaan duduk yang mana pantatnya menempel pada alas
+              duduk.
+            </li>
+            <li>
+              Orang yang tidur tersebut bertubuh sedang, tidak terlalu gemuk,
+              pun tidak terlalu kurus.
+            </li>
+            <li>Bangun dari tidurnya pada posisi yang sama ketika ia tidur.</li>
+            <li>
+              Tidak ada orang yang mengabarkan bahwa saat dia tidur mengeluarkan
+              kentut.
+            </li>
+          </ul>
+
+          <p className="text-[14px] mt-8">
+            <span className="font-semibold">Sumber referensi : </span>
+            Asy-Syaikh Hasan Al-Kaf. At-Taqriratus Sadidah fil Masailil Mufidah
+            (hlm.101). Tarim: Darul 'ilmi wad-Da'wah,2003.
+          </p>
+        </div>
+
+        <div className="w-5/12 pl-16">
+          <p className="text-[32px] font-semibold leading-loose">
+            Tertidur Saat Duduk
+          </p>
+          <p className="text-[18px] font-semibold">
+            Apakah membatalkan wudlu ?
+          </p>
+          <img src={Wudlu} alt="wudlu.svg" className="mt-16 w-[26rem]" />
+        </div>
       </div>
     </Layout>
   );
