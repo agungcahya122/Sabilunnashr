@@ -12,6 +12,7 @@ import User from "../assets/user.svg";
 import Adab from "../assets/adab.svg";
 import Meet from "../assets/meet.svg";
 import Bank from "../assets/bank.svg";
+import Add from "../assets/add.svg";
 
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { TfiAngleDoubleDown } from "react-icons/tfi";
@@ -19,6 +20,10 @@ import { IoCalendarOutline } from "react-icons/io5";
 import { BsCircleFill } from "react-icons/bs";
 import { TbPhoneCall } from "react-icons/tb";
 import { FiEdit3 } from "react-icons/fi";
+
+import InputCustom from "../components/InputCustom";
+import CustomButton from "../components/CustomButton";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
@@ -370,7 +375,137 @@ const Home = () => {
         </div>
       </div>
 
-      <div></div>
+      <div className="mt-8 w-full bg-color1 pb-5 text-color5">
+        <p className="TitleShadow text-center text-[32px] font-semibold">
+          FORMULIR PENDAFTARAN
+        </p>
+
+        <div className="mt-16 flex flex-row justify-center gap-10">
+          <div className="flex w-4/12 flex-col gap-4 pr-2 ">
+            <div className="flex items-center gap-4">
+              <p className="w-5/12 text-[16px]  font-semibold">Nama :</p>
+              <InputCustom
+                id="input-nama"
+                type="text"
+                placeholder="Tuliskan nama anda"
+                className="input-border input h-8 w-full max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-4 text-[16px] text-color5 placeholder-slate-400"
+              />
+            </div>
+
+            <div className="flex items-center gap-4">
+              <p className="w-5/12 text-[16px] font-semibold">Email :</p>
+              <InputCustom
+                id="input-nama"
+                type="text"
+                placeholder="Tuliskan email anda"
+                className="input-border input h-8 w-full max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-4 text-[16px] text-color5 placeholder-slate-400"
+              />
+            </div>
+
+            <div className="flex items-center gap-4">
+              <p className="w-5/12 text-[16px] font-semibold">Whatsapp :</p>
+              <InputCustom
+                id="input-nama"
+                type="text"
+                placeholder="Tuliskan nomor whatsapp anda"
+                className="input-border input h-8 w-full max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-4 text-[16px] text-color5 placeholder-slate-400"
+              />
+            </div>
+
+            <div className="flex items-center gap-4">
+              <p className="w-5/12 text-[16px] font-semibold">Domisili :</p>
+              <InputCustom
+                id="input-nama"
+                type="text"
+                placeholder="Tempat tinggal anda sekarang"
+                className="input-border input h-8 w-full max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-4 text-[16px] text-color5 placeholder-slate-400"
+              />
+            </div>
+
+            <div className="flex items-center gap-4">
+              <p className="w-5/12 text-[16px] font-semibold">Pekerjaan :</p>
+              <InputCustom
+                id="input-nama"
+                type="text"
+                placeholder="Tuliskan pekerjaan anda"
+                className="input-border input h-8 w-full max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-4 text-[16px] text-color5 placeholder-slate-400"
+              />
+            </div>
+
+            <div className="flex items-center gap-4">
+              <p className="w-5/12 text-[16px] font-semibold">Usia :</p>
+              <InputCustom
+                id="input-nama"
+                type="text"
+                placeholder="Tuliskan pekerjaan anda"
+                className="input-border input h-8 w-full max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-4 text-[16px] text-color5 placeholder-slate-400"
+              />
+            </div>
+
+            <div className="flex items-center gap-4">
+              <p className="w-5/12 text-[16px] font-semibold">Gender :</p>
+              <select
+                defaultValue={"DEFAULT"}
+                name="option"
+                id="input-gender"
+                className="select-ghost select w-[19rem] max-w-full rounded-lg border-2 border-zinc-500 text-color5"
+              >
+                <option value="DEFALUT" disabled>
+                  Pilih Salah Satu
+                </option>
+                <option value="makanan">Laki - Laki</option>
+                <option value="minuman">Perempuan</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="w-5/12 pl-8">
+            <p className="text-[16px] font-semibold">
+              Kirimkan bukti pembayran pendaftaran :
+            </p>
+
+            <div className="flex items-center gap-5">
+              <img
+                src=""
+                alt="rekening.svg"
+                className="mt-5 h-40 w-48 rounded-xl border-2 border-zinc-500 bg-contain bg-center bg-no-repeat"
+                style={{ backgroundImage: `URL(${Add})` }}
+              />
+              <div className="mt-auto">
+                <label className="block">
+                  <span className="sr-only">Choose profile photo</span>
+                  <input
+                    type="file"
+                    className="block w-full text-[16px] text-slate-500 file:mr-4 file:rounded-xl file:border-2 file:border-zinc-200 file:bg-color4 file:py-2 file:px-6 file:text-[16px] file:font-semibold file:text-color1 hover:file:bg-[rgba(13,206,218,0.8)]"
+                  />
+                </label>
+                <p className="mt-1 text-[14px] italic text-zinc-500">
+                  * Jenis foto : .jpg
+                </p>
+              </div>
+            </div>
+
+            <p className="mt-5 text-[16px] font-semibold">
+              Alasan Singkat Mendaftar :
+            </p>
+
+            <textarea
+              id="input-alasan"
+              typeof="text"
+              placeholder="Tuliskan alasan singkat kenapa anda tertarik"
+              className="input-border input mt-2 h-20 w-9/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-2 py-2 text-[16px] text-color5 placeholder-slate-400"
+            />
+          </div>
+        </div>
+
+        <CustomButton
+          id="btn-formulir"
+          label="Mengirim Formulir Untuk Mendaftar"
+          className="mb-16 mt-16 ml-[34vw] rounded-2xl bg-color6 py-2 px-6 text-[18px] font-semibold text-white hover:bg-[rgb(0,140,255)] disabled:cursor-not-allowed disabled:bg-color2"
+        />
+      </div>
+
+      <Footer />
     </Layout>
   );
 };
