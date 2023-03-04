@@ -30,7 +30,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="ml-auto">
-        <img src={Sabilun} alt="sabilun.svg" className="h-12 md:h-14 lg:h-14" />
+        <img src={Sabilun} alt="sabilun.svg" className="h-12 md:h-12 lg:h-12" />
         {/* <a className="btn btn-ghost normal-case text-xl">daisyUI</a> */}
       </div>
     </div>

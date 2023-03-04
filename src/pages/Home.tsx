@@ -1,11 +1,23 @@
 import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
 
+import "../styles/App.css";
+
 import Instagram from "../assets/instagram.svg";
 import Dzikir from "../assets/dzikir.svg";
 import Masjid from "../assets/masjid.svg";
+import Kitab from "../assets/kitab.svg";
 import Wudlu from "../assets/wudlu.svg";
+import User from "../assets/user.svg";
 import Adab from "../assets/adab.svg";
+import Meet from "../assets/meet.svg";
+import Bank from "../assets/bank.svg";
+
+import { AiOutlineClockCircle } from "react-icons/ai";
+import { TfiAngleDoubleDown } from "react-icons/tfi";
+import { IoCalendarOutline } from "react-icons/io5";
+import { BsCircleFill } from "react-icons/bs";
+import { TbPhoneCall } from "react-icons/tb";
 import { FiEdit3 } from "react-icons/fi";
 
 const Home = () => {
@@ -216,6 +228,149 @@ const Home = () => {
           />
         </div>
       </div>
+
+      <div className="relative w-full bg-color4 text-color1 md:pb-8 lg:pb-8 lg:text-[16px]">
+        <p className="absolute -top-3 left-[33vw] w-4/12 rounded-3xl bg-color3 px-0 py-2 text-center font-semibold text-color5 shadow-[1px_4px_4px_0px_rgba(0,0,0,0.3)] md:text-[20px] lg:text-[20px]">
+          Ingin belajar fiqih lebih dalam ?
+        </p>
+
+        <p className="TitleShadow font-semibold text-color1 lg:pl-8 lg:pt-16 lg:text-[16px]">
+          <span className="decoration-TitleShadow underline decoration-color1 decoration-2 underline-offset-8">
+            SPESIAL R
+          </span>
+          AMADHAN
+        </p>
+        <p className="TitleShadow text-center font-semibold text-color1 lg:mt-4 lg:text-[38px]">
+          DAURAH BERKAH ILMU
+        </p>
+        <p className="TitleShadow -mt-2 text-center font-semibold text-[#FFDD5E] lg:text-[38px]">
+          FIKIH RAMADHAN
+        </p>
+
+        <div className="flex w-7/12 flex-row justify-between rounded-2xl bg-color1 shadow-[1px_4px_4px_0px_rgba(0,0,0,0.4)] lg:mx-auto lg:mt-8 lg:py-6 lg:px-16">
+          <div className="w-6/12 text-center text-[14px] text-color5">
+            <img src={User} alt="user.svg" className="mx-auto" />
+            <p className="mt-3 text-[18px] font-semibold">PERMANA PUTRA</p>
+            <p className="mt-3 leading-4">
+              Mahasiswa S1 Syariah LIPIA <br /> Founder & admin
+              <span className="font-semibold"> @sabilunnashr</span>
+            </p>
+          </div>
+
+          <div className="w-6/12 px-4 text-center text-[14px] text-color5">
+            <img src={Kitab} alt="kitab.svg" className="mx-auto" />
+            <p className="mt-3 text-[18px] font-semibold">
+              NABIL IZZATURRAHMAN
+            </p>
+            <p className="mt-3 leading-4">
+              Mahasiswa I'dad Lughawi <br />
+              <span className="">LIPIA JAKARTA</span>
+            </p>
+          </div>
+        </div>
+
+        <p className="text-colo1 mt-20 pl-16 text-[20px] font-semibold">
+          Topik yang akan dibahas :
+        </p>
+        <div className="mt-5 flex flex-row pl-20 text-justify text-[16px] text-color1">
+          <ul className="mr-16 w-3/12 list-outside list-disc pr-2 leading-relaxed">
+            <li>Niat puasa dilafadzkan ?</li>
+            <li>
+              Pembatal puasa kontemporer (batalkah puasa karena memakai inhaler
+              ?)
+            </li>
+            <li>Fidyah, dari siapa dan untuk siapa ? Kasus bumil dan busui</li>
+            <li>Apa hukum renang saat puasa ?</li>
+            <li>Urutan hukum renang saat puasa ?</li>
+            <li>Salat tarawih 11 rakaat atau 23 rakaat ?</li>
+            <li>Adakah shalawat di sela-sela salat Tarawih ?</li>
+          </ul>
+
+          <ul className="w-3/12 list-outside list-disc leading-relaxed">
+            <li>Mulai kapan qunut witir ?</li>
+            <li>
+              Berapa kadar minim i'tikaf ? dan solusi i'tikaf untuk pekerja ?
+            </li>
+            <li>Lailatulqdar menurut Mazhab Syafi'i</li>
+            <li>Bolehkah zakat fitrah dengan uang ?</li>
+            <li>Kupas tuntas zakat fitrah dan alokasinya</li>
+            <li>Dan masih banyak lagi</li>
+          </ul>
+
+          <div className="w-6/12 pl-24">
+            <p className="rounded-tl-3xl rounded-bl-3xl bg-color6 px-8 py-3 text-[24px] font-semibold leading-7 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]">
+              Fasilitas : <br />
+              <span className="text-[16px] font-normal">
+                Tanya jawab, modul materi, recording,
+              </span>{" "}
+              <span className="text-[16px]">e - certificate</span>
+            </p>
+
+            <div className="mt-5 ml-8 flex rounded-tl-2xl rounded-bl-2xl bg-color6 px-8 py-2 text-[24px] font-semibold shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]">
+              <p className="pr-14 text-[46px]">
+                40<span className="text-[28px] font-normal">k</span>
+              </p>
+
+              <div className="flex flex-col justify-center text-[18px]">
+                <p className="flex gap-3 border-l-2 border-color1 pl-10 align-middle">
+                  <IoCalendarOutline className="h-5 w-5" />
+                  <span className="font-normal">Ahad, </span>19 Maret 2023
+                </p>
+
+                <p className="flex gap-3 border-l-2 border-color1 pt-1 pl-10">
+                  <AiOutlineClockCircle className="h-6 w-6" />
+                  08.00 - 10.30 <span className="font-normal">WIB</span>
+                </p>
+              </div>
+            </div>
+
+            <p className="ml-20 mt-5 flex items-center rounded-tl-2xl rounded-bl-2xl bg-color6 px-14 py-3 text-[18px] font-semibold leading-7 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]">
+              <BsCircleFill className="mr-2 h-4 w-4 text-red-600" />
+              Special Live in <span className="italic">G-Meet</span>
+              <img src={Meet} alt="meet.svg" className="ml-5 h-8 w-8" />
+            </p>
+
+            <div className="ml-28 mt-5 flex flex-row items-center gap-5 rounded-tl-2xl rounded-bl-2xl bg-color6 px-8 py-3 text-[16px] font-semibold leading-7 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]">
+              <img src={Bank} alt="bank.svg" />
+              <p className="leading-6">
+                1154514796 <br />{" "}
+                <span className="font-normal">a.n Vigna Radiata PP</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p className=" TitleShadow mt-5 ml-16 flex gap-2 text-[18px] font-semibold text-color1">
+          <TbPhoneCall className="TitleShadow h-6 w-6" />
+          Contact Person
+        </p>
+        <ul className="TitleShadow ml-16 mt-2 list-inside list-disc text-[16px] leading-loose text-color1">
+          <li>Ikhwan : ( 0881-0819-85209 )</li>
+          <li>Akhwat : ( 0859-6305-7535 )</li>
+        </ul>
+
+        <p className="mx-auto mt-8 w-5/12 rounded-3xl bg-color3 px-0 py-2 text-center font-semibold text-color5 shadow-[1px_4px_4px_0px_rgba(0,0,0,0.3)] md:text-[20px] lg:text-[26px]">
+          Kapan Pendaftaran Dimulai ?
+        </p>
+
+        <div className="mt-8 flex items-center justify-center gap-5 font-semibold text-color1 md:text-[20px] lg:text-[30px]">
+          <IoCalendarOutline className="TitleShadow h-14 w-14" />
+          <p className="TitleShadow">Mulai 02 Maret s.d 17 Maret 2023</p>
+        </div>
+
+        <p className="TitleShadow mt-8 flex items-center justify-center gap-5 font-semibold text-color1 md:text-[20px] lg:text-[26px]">
+          Isi formulir dibawah dan mulailah mendaftar
+        </p>
+
+        <div className="mt-2 flex w-full items-center justify-center gap-2">
+          <TfiAngleDoubleDown className="h-12 w-12 font-bold" />
+          <TfiAngleDoubleDown className="h-12 w-12 font-bold" />
+          <TfiAngleDoubleDown className="h-12 w-12 font-bold" />
+          <TfiAngleDoubleDown className="h-12 w-12 font-bold" />
+        </div>
+      </div>
+
+      <div></div>
     </Layout>
   );
 };
