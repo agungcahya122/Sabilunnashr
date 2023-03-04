@@ -1,30 +1,26 @@
-import { TbAlignLeft } from "react-icons/tb";
-
+import Sabilun from "../assets/navbar.svg";
 import "../styles/App.css";
+
+import { TbAlignLeft } from "react-icons/tb";
 
 const Navbar = () => {
   return (
-    <div className="navbar sticky top-0 z-50 bg-color4 shadow-[0px_5px_10px_0px_rgba(0,0,0,0.25)] px-2 lg:px-10 py-2 ">
+    <div className="navbar sticky top-0 z-50 bg-color4 px-2 py-4 shadow-[0px_5px_10px_0px_rgba(0,0,0,0.25)] lg:px-10">
       <div className="">
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost px-2 lg:hidden">
-            <TbAlignLeft className="w-6 h-6 text-color1 drop-shadow" />
+          <label tabIndex={0} className="btn-ghost btn px-2 lg:hidden">
+            <TbAlignLeft className="h-8 w-8 text-color1 drop-shadow lg:h-6 lg:w-6" />
           </label>
-          <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Item 2</a>
-            </li>
-
-            <li>
-              <a>Item 3</a>
-            </li>
+          <ul className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow">
+            <li>Home</li>
+            <li>Bab Adab</li>
+            <li>Bab Dzikir</li>
+            <li>Bab Wudlu</li>
+            <li>JarFisya</li>
           </ul>
         </div>
         <div className="">
-          <ul className="lg:menu lg:menu-horizontal hidden text-color1 gap-5 text-[18px] font-semibold TextShadow">
+          <ul className="TextShadow hidden gap-5 text-[18px] font-semibold text-color1 lg:menu lg:menu-horizontal">
             <li>Home</li>
             <li>Bab Adab</li>
             <li>Bab Dzikir</li>
@@ -34,7 +30,8 @@ const Navbar = () => {
         </div>
       </div>
       <div className="ml-auto">
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <img src={Sabilun} alt="sabilun.svg" className="h-12 md:h-14 lg:h-14" />
+        {/* <a className="btn btn-ghost normal-case text-xl">daisyUI</a> */}
       </div>
     </div>
   );
