@@ -1,8 +1,8 @@
 RewriteEngine on
 RewriteCond %{HTTP_HOST} ^sabilunnashr.com$ [NC,OR]
 RewriteCond %{HTTP_HOST} ^www.sabilunnashr.com$
-RewriteCond %{REQUEST_URI} !public/
-RewriteRule (.*) /public/$1 [L]
+RewriteCond %{REQUEST_URI} !dist/
+RewriteRule (.*) /dist/$1 [L]
 
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “alt-php81” package as the default “PHP” programming language.
