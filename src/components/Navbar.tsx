@@ -41,13 +41,24 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
+
         <div className="md:pl-2 lg:pl-0">
           <ul className="TextShadow hidden gap-5 text-[18px] font-semibold text-color1 md:menu md:menu-horizontal lg:menu lg:menu-horizontal">
-            <a href="#Home">Home</a>
-            <a href="#Adab">Bab Adab</a>
-            <a href="#Dzikir">Bab Dzikir</a>
-            <a href="#Wudlu">Bab Wudlu</a>
-            <a href="#Jarfisya">JarFisya</a>
+            <a className="hover:text-color5" href="#Home">
+              Home
+            </a>
+            <a className="hover:text-color5" href="#Adab">
+              Bab Adab
+            </a>
+            <a className="hover:text-color5" href="#Dzikir">
+              Bab Dzikir
+            </a>
+            <a className="hover:text-color5" href="#Wudlu">
+              Bab Wudlu
+            </a>
+            <a className="hover:text-color5" href="#Jarfisya">
+              JarFisya
+            </a>
           </ul>
         </div>
       </div>
@@ -86,7 +97,7 @@ const Navbar = () => {
             <p className="TitleShadow -mt-5 text-center text-[32px] font-bold text-color1 ">
               Login
             </p>
-            <p className="TitleShadow ml-44 mr-44 mt-4 border-b-2 border-dashed pb-4 text-center text-[18px] text-color1">
+            <p className="TitleShadow md:mx- mt-4 border-b-2 border-dashed pb-4 text-center text-[18px] text-color1 lg:mx-44">
               Login for your account and lets enjoy your website
             </p>
 
