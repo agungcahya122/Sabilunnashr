@@ -85,7 +85,10 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="flex flex-col-reverse bg-color1 text-[15px] md:flex-row md:text-[14px] lg:flex-row lg:text-[16px]">
+      <div
+        id="Adab"
+        className="flex flex-col-reverse bg-color1 text-[15px] md:flex-row md:text-[14px] lg:flex-row lg:text-[16px]"
+      >
         <div className="w-full pt-2 pb-8 pl-5 pr-5 text-justify text-color5 md:w-8/12 md:pt-14 md:pr-0 md:pl-16 lg:w-8/12 lg:pr-0 lg:pt-14 lg:pl-64">
           <p>
             Al-Imam An-Nawawi(w.675H)-rahimahullah- menjelaskan dalam Syarh
@@ -147,7 +150,10 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="flex flex-col bg-color4 pt-2 pb-10 text-[15px] text-color1 md:flex-row md:pt-10 md:text-[14px] lg:flex-row lg:pt-10 lg:text-[16px]">
+      <div
+        id="Dzikir"
+        className="flex flex-col bg-color4 pt-2 pb-10 text-[15px] text-color1 md:flex-row md:pt-10 md:text-[14px] lg:flex-row lg:pt-10 lg:text-[16px]"
+      >
         <div className="mt-5 w-full text-center text-[28px] font-semibold md:w-5/12 md:text-[26px] lg:w-5/12 lg:text-[34px]">
           Dzikir Ba'dha Shalat
           <img
@@ -190,7 +196,10 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="flex flex-col-reverse bg-color1 pt-5 pb-10 text-[15px] text-color5 md:flex-row md:pt-10 md:text-[14px] lg:flex-row lg:pt-10 lg:text-[16px]">
+      <div
+        id="Wudlu"
+        className="flex flex-col-reverse bg-color1 pt-5 pb-10 text-[15px] text-color5 md:flex-row md:pt-10 md:text-[14px] lg:flex-row lg:pt-10 lg:text-[16px]"
+      >
         <div className="mt-5 w-full pl-8 pr-5 text-justify md:mt-0 md:w-7/12 md:pl-20 md:pr-14 lg:mt-0 lg:w-7/12 lg:pl-20 lg:pr-14">
           <p>
             Asy-Syaikh Hasan bin Ahmad Al-Kaf merincikan syarat keadaan tidur
@@ -234,7 +243,10 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="relative w-full bg-color4 text-color1 md:pb-8 lg:pb-8 lg:text-[16px]">
+      <div
+        id="Jarfisya"
+        className="relative w-full bg-color4 text-color1 md:pb-8 lg:pb-8 lg:text-[16px]"
+      >
         <p className="absolute -top-3 left-[33vw] w-4/12 rounded-3xl bg-color3 px-0 py-2 text-center font-semibold text-color5 shadow-[1px_4px_4px_0px_rgba(0,0,0,0.3)] md:text-[20px] lg:text-[20px]">
           Ingin belajar fiqih lebih dalam ?
         </p>
@@ -467,7 +479,7 @@ const Home = () => {
             <div className="flex items-center gap-5">
               <img
                 src=""
-                alt="rekening.svg"
+                alt="rekening.jpg"
                 className="mt-5 h-40 w-48 rounded-xl border-2 border-zinc-500 bg-contain bg-center bg-no-repeat"
                 style={{ backgroundImage: `URL(${Add})` }}
               />
