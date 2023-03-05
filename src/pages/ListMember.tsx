@@ -6,24 +6,40 @@ import { MdSearch } from "react-icons/md";
 import { TfiPrinter } from "react-icons/tfi";
 import Footer from "../components/Footer";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
+import { toast, ToastContainer } from "react-toastify";
 
 const ListMember = () => {
   const navigate = useNavigate()
 
   let [memberList, setMemberList] = useState<any[]>([])
   let [loading, setLoading] = useState<boolean>(false)
+  const [search, setSearch] = useState<string>("");
+  const [filter, setFilter] = useState<any[]>([])
 
   if (localStorage.getItem('token') == null) {
+    toast.error('you must login!')
     return (
       <Layout>
         <Navbar />
-        login dulu
+        <ToastContainer />
       </Layout>
     )
   }
+
+  const filterList = useCallback(() => {
+    const filtered = memberList.filter((item) =>
+      item.name.toLocaleLowerCase().includes(search.toLowerCase())
+    );
+    setFilter(filtered);
+  }, [memberList, search]);
+
+  useEffect(() => {
+    filterList();
+  }, [filterList]);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,11 +60,6 @@ const ListMember = () => {
     navigate('/DetailMember', { state: { data: data } })
   }
 
-  // axios.get('https://sabilun.promaydo-tech.com/api/ramadhan')
-  //   .then((resp) => {
-  //     // setMemberList(resp.data)
-  //     console.log(resp.data)
-  //   })
   console.log(memberList)
   return (
     <Layout>
@@ -61,7 +72,8 @@ const ListMember = () => {
 
       <div className="mt-16 flex flex-row items-center justify-center px-20">
         <div className="flex w-[22rem] gap-2 rounded-full bg-color4 py-2 px-6">
-          <InputCustom
+          <input
+            onChange={(e) => setSearch(e.target.value)}
             id="input-search"
             type="search"
             placeholder="Mencari Nama Peserta .... ?"
@@ -72,7 +84,7 @@ const ListMember = () => {
 
         <div className="mt-0 ml-auto flex h-10 gap-3 rounded-xl bg-color4 py-2 px-8 text-center text-[16px] font-medium text-color5 hover:cursor-pointer hover:bg-[rgba(13,206,218,0.7)]">
           <TfiPrinter className="h-5 w-5 text-color5" />
-          Prin to Excel
+          Print to Excel
         </div>
       </div>
 
@@ -98,12 +110,12 @@ const ListMember = () => {
             </tr>
           </thead>
           <tbody className="border-x-2 border-[rgba(159,159,159,0.2)]">
-            {memberList.map((listValue, index) => {
+            {filter.map((listValue, index) => {
               return (
                 <tr key={index}>
                   <td className="text-center">{index + 1}</td>
                   <td className="text-center">
-                    <a onClick={() => toDetail(listValue)} >{listValue.name}</a>
+                    <a onClick={() => toDetail(listValue)} className="hover:cursor-pointer text-sky-700">{listValue.name}</a>
                   </td>
                   <td className="text-center">{listValue.wa}</td>
                   <td >{listValue.email}</td>

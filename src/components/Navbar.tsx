@@ -57,10 +57,12 @@ const Navbar = () => {
         console.log(resp.data)
         if (resp.data.message == "Successfully logged out") {
           toast.success("Successfully logged out")
-          localStorage.removeItem('token')
-          navigate('/')
         }
+        localStorage.removeItem('token')
+        navigate('/')
       }).catch((e) => {
+        localStorage.removeItem('token')
+        navigate('/')
         console.log(e.message)
       })
     setLoading(false)
