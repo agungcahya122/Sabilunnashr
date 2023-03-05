@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../styles/App.css";
 
 import Sabilun from "../assets/navbar.svg";
+import Login from "../assets/login.svg";
 
 import { TbAlignLeft } from "react-icons/tb";
 
@@ -48,9 +49,46 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <div className="ml-auto">
-        <img src={Sabilun} alt="sabilun.svg" className="h-12 md:h-12 lg:h-12" />
-        {/* <a className="btn btn-ghost normal-case text-xl">daisyUI</a> */}
+      <div className="dropdown ml-auto">
+        <img
+          src={Sabilun}
+          alt="sabilun.svg"
+          className="h-12 hover:cursor-pointer md:h-12 lg:h-12"
+          tabIndex={0}
+        />
+        <ul
+          tabIndex={0}
+          className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-color1 p-2 text-color5 shadow"
+        >
+          <li>
+            <label
+              htmlFor="my-modal-3"
+              className="hover:bg-color3 active:bg-color6"
+            >
+              Login
+            </label>
+          </li>
+        </ul>
+
+        <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+        <div className="modal">
+          <div className="modal-box relative w-8/12 max-w-full bg-color4">
+            <label
+              htmlFor="my-modal-3"
+              className="rounded-ful btn-ghost btn absolute right-2 top-2 rounded-3xl text-[18px] font-bold text-color1"
+            >
+              ✕
+            </label>
+            <img src={Login} alt="login.svg" className="w-16" />
+
+            <p className="-mt-5 text-center text-[32px] font-bold text-color1">
+              Login
+            </p>
+            <p className="ml-44 mr-44 mt-4 border-b-2 border-dashed pb-4 text-center text-[18px] text-color1">
+              Login for your account and lets enjoy your website
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
