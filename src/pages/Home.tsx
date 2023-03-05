@@ -243,7 +243,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div
+      {/* <div
         id="Jarfisya"
         className="relative w-full bg-color4 pb-5 text-[15px] text-color1 md:pb-8 md:text-[16px] lg:pb-8 lg:text-[16px]"
       >
@@ -297,9 +297,10 @@ const Home = () => {
           </div>
         </div>
 
-        <p className="text-colo1 mt-20 pl-16 text-[20px] font-semibold">
+        <p className="text-colo1 mt-10 pl-8 text-[20px] font-semibold md:mt-16 md:pl-8 lg:mt-20 lg:pl-16">
           Topik yang akan dibahas :
         </p>
+
         <div className="mt-5 flex flex-row pl-20 text-justify text-[16px] text-color1">
           <ul className="mr-16 w-3/12 list-outside list-disc pr-2 leading-relaxed">
             <li>Niat puasa dilafadzkan ?</li>
@@ -396,82 +397,82 @@ const Home = () => {
           <TfiAngleDoubleDown className="h-12 w-12 font-bold" />
           <TfiAngleDoubleDown className="h-12 w-12 font-bold" />
         </div>
-      </div>
+      </div> */}
 
-      {/* <div className="mt-8 w-full bg-color1 pb-5 text-color5">
-        <p className="TitleShadow text-center text-[32px] font-semibold">
+      <div className="mt-8 w-full bg-color1 pb-5 text-color5">
+        <p className="TitleShadow text-center text-[26px] font-semibold md:text-[30px] lg:text-[32px]">
           FORMULIR PENDAFTARAN
         </p>
 
-        <div className="mt-16 flex flex-row justify-center gap-10">
-          <div className="flex w-4/12 flex-col gap-8 pr-2 ">
-            <div className="flex items-center gap-4">
-              <p className="w-5/12 text-[16px]  font-semibold">Nama :</p>
+        <div className="mt-10 flex w-full flex-col justify-center gap-10 px-5 md:mt-14 md:flex-row md:gap-16 md:px-8 lg:mt-16 lg:flex-row lg:gap-20 lg:px-8">
+          <div className="pr-2 md:w-6/12 lg:w-4/12">
+            <div className="flex items-center gap-2">
+              <p className="w-4/12 text-[16px]  font-semibold">Nama :</p>
               <InputCustom
                 id="input-nama"
                 type="text"
                 placeholder="Tuliskan nama anda"
-                className="input-border input h-8 w-full max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-4 text-[16px] text-color5 placeholder-slate-400"
+                className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
               />
             </div>
 
-            <div className="flex items-center gap-4">
-              <p className="w-5/12 text-[16px] font-semibold">Email :</p>
+            <div className="mt-5 flex items-center gap-2">
+              <p className="w-4/12 text-[16px] font-semibold">Whatsapp :</p>
               <InputCustom
                 id="input-nama"
                 type="text"
-                placeholder="Tuliskan email anda"
-                className="input-border input h-8 w-full max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-4 text-[16px] text-color5 placeholder-slate-400"
+                placeholder="Tuliskan nomor anda"
+                className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
               />
             </div>
 
-            <div className="flex items-center gap-4">
-              <p className="w-5/12 text-[16px] font-semibold">Whatsapp :</p>
+            <div className="mt-5 flex items-center gap-2">
+              <p className="w-4/12 text-[16px] font-semibold">E - mail :</p>
               <InputCustom
                 id="input-nama"
                 type="text"
-                placeholder="Tuliskan nomor whatsapp anda"
-                className="input-border input h-8 w-full max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-4 text-[16px] text-color5 placeholder-slate-400"
+                placeholder="Tuliskan e-mail anda"
+                className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
               />
             </div>
 
-            <div className="flex items-center gap-4">
-              <p className="w-5/12 text-[16px] font-semibold">Domisili :</p>
+            <div className="mt-5 flex items-center gap-2">
+              <p className="w-4/12 text-[16px] font-semibold">Domisili :</p>
               <InputCustom
                 id="input-nama"
                 type="text"
-                placeholder="Tempat tinggal anda sekarang"
-                className="input-border input h-8 w-full max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-4 text-[16px] text-color5 placeholder-slate-400"
+                placeholder="Domisili anda sekarang"
+                className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
               />
             </div>
 
-            <div className="flex items-center gap-4">
-              <p className="w-5/12 text-[16px] font-semibold">Pekerjaan :</p>
+            <div className="mt-5 flex items-center gap-2">
+              <p className="w-4/12 text-[16px] font-semibold">Pekerjaan :</p>
               <InputCustom
                 id="input-nama"
                 type="text"
-                placeholder="Tuliskan pekerjaan anda"
-                className="input-border input h-8 w-full max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-4 text-[16px] text-color5 placeholder-slate-400"
+                placeholder="Pekerjaan anda sekarang"
+                className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
               />
             </div>
 
-            <div className="flex items-center gap-4">
-              <p className="w-5/12 text-[16px] font-semibold">Usia :</p>
+            <div className="mt-5 flex items-center gap-2">
+              <p className="w-4/12 text-[16px] font-semibold">Usia :</p>
               <InputCustom
                 id="input-nama"
                 type="text"
-                placeholder="Tuliskan pekerjaan anda"
-                className="input-border input h-8 w-full max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-4 text-[16px] text-color5 placeholder-slate-400"
+                placeholder="Usia anda sekarang"
+                className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
               />
             </div>
 
-            <div className="flex items-center gap-4">
-              <p className="w-5/12 text-[16px] font-semibold">Gender :</p>
+            <div className="mt-5 flex items-center gap-1">
+              <p className="w-4/12 text-[16px] font-semibold">Gender :</p>
               <select
                 defaultValue={"DEFAULT"}
                 name="option"
                 id="input-gender"
-                className="select-ghost select w-[19rem] max-w-full rounded-lg border-2 border-zinc-500 text-color5"
+                className="select-ghost select max-w-full rounded-lg border-2 border-zinc-500 text-color5"
               >
                 <option value="DEFALUT" disabled>
                   Pilih Salah Satu
@@ -482,28 +483,26 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="w-5/12 pl-8">
+          <div className="md:w-6/12 lg:w-5/12">
             <p className="text-[16px] font-semibold">
               Kirimkan bukti pembayran pendaftaran :
             </p>
 
-            <div className="flex items-center gap-5">
+            <div className="flex flex-col items-center gap-5 md:flex-col lg:flex-row">
               <img
                 src=""
                 alt="rekening.jpg"
                 className="mt-5 h-40 w-48 rounded-xl border-2 border-zinc-500 bg-contain bg-center bg-no-repeat"
                 style={{ backgroundImage: `URL(${Add})` }}
               />
+
               <div className="mt-auto">
-                <label className="block">
-                  <span className="sr-only">Choose profile photo</span>
-                  <input
-                    type="file"
-                    className="block w-full text-[16px] text-slate-500 file:mr-4 file:rounded-xl file:border-2 file:border-zinc-200 file:bg-color4 file:py-2 file:px-6 file:text-[16px] file:font-semibold file:text-color1 hover:file:bg-[rgba(13,206,218,0.8)]"
-                  />
-                </label>
-                <p className="mt-1 text-[14px] italic text-zinc-500">
-                  * Jenis foto : .jpg
+                <input
+                  type="file"
+                  className="block w-full text-[16px] text-slate-500 file:mr-4 file:rounded-xl file:border-2 file:border-zinc-200 file:bg-color4 file:py-2 file:px-6 file:text-[16px] file:font-semibold file:text-color1 hover:file:bg-[rgba(13,206,218,0.8)]"
+                />
+                <p className="mt-1 text-end text-[14px] italic text-zinc-500 md:text-end lg:text-start">
+                  * Jenis foto : . jpg
                 </p>
               </div>
             </div>
@@ -524,9 +523,9 @@ const Home = () => {
         <CustomButton
           id="btn-formulir"
           label="Mengirim Formulir Untuk Mendaftar"
-          className="mb-16 mt-16 ml-[34vw] rounded-2xl bg-color6 py-2 px-6 text-[18px] font-semibold text-white hover:bg-[rgb(0,140,255)] disabled:cursor-not-allowed disabled:bg-color2"
+          className="mb-16 mt-10 ml-[15vw] rounded-3xl bg-color6 py-3 px-6 text-[15px] font-semibold text-white hover:bg-[rgb(0,140,255)] disabled:cursor-not-allowed disabled:bg-color2 md:ml-[30vw] md:mt-10 md:text-[16px] lg:mt-14 lg:ml-[34vw] lg:text-[18px]"
         />
-      </div> */}
+      </div>
 
       <Footer />
     </Layout>
