@@ -11,7 +11,8 @@ import { useState } from "react";
 import axios from "axios";
 
 const Navbar = () => {
-  const navigate = useNavigate();
+  const token = localStorage.getItem('token')
+  const navigate = useNavigate()
 
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -28,16 +29,25 @@ const Navbar = () => {
     password: pass,
   };
 
-  const login = () =>
-    axios
-      .post("https://sabilun.promaydo-tech.com/api/auth/login", reqBody)
-      .then((resp) => {
-        console.log(resp.data.access_token);
-        localStorage.setItem("token", resp.data.access_token);
-        if (resp.data.access_token) {
-          navigate("/ListMember");
-        }
-      });
+  const login = () => axios.post('https://sabilun.promaydo-tech.com/api/auth/login', reqBody)
+    .then((resp) => {
+      console.log(resp.data.access_token)
+      localStorage.setItem('token', resp.data.access_token)
+      if (resp.data.access_token) {
+        navigate('/ListMember')
+      }
+    })
+
+  const logout = () => axios.post('https://sabilun.promaydo-tech.com/api/auth/logout', null, { params: { token: token } })
+    .then((resp) => {
+      console.log(resp.data)
+      localStorage.removeItem('token')
+      navigate('/')
+    }).catch((e) => {
+      console.log(e.message)
+    })
+
+
   return (
     <div className="navbar sticky top-0 z-50 bg-color4 px-2 py-4 shadow-[0px_5px_10px_0px_rgba(0,0,0,0.25)] lg:px-10">
       <div className="">
@@ -102,22 +112,21 @@ const Navbar = () => {
           className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-color1 p-2 text-color5 shadow"
         >
           <li>
-            <label
-              htmlFor="my-modal-3"
-              className="hover:bg-color3 active:bg-color6"
-            >
-              Login
-            </label>
+            {token == null ?
+              <label htmlFor="my-modal-3" className="hover:bg-color3 active:bg-color6">
+                Login
+              </label>
+              :
+              <label htmlFor="my-modal-4" className="hover:bg-color3 active:bg-color6">
+                Logout
+              </label>}
           </li>
         </ul>
 
         <input type="checkbox" id="my-modal-3" className="modal-toggle" />
         <div className="modal">
-          <div className="modal-box relative w-10/12 max-w-full bg-color4 md:w-10/12 lg:w-8/12">
-            <label
-              htmlFor="my-modal-3"
-              className="TitleShadow rounded-ful btn-ghost btn absolute right-2 top-2 rounded-3xl text-[18px] font-bold text-color1"
-            >
+          <div className="modal-box relative text-center w-1/2 max-w-full bg-color4">
+            <label htmlFor="my-modal-3" className="TitleShadow rounded-ful btn-ghost btn absolute right-2 top-2 rounded-3xl text-[18px] font-bold text-color1" >
               ✕
             </label>
             <img src={Login} alt="login.svg" className="w-10 md:w-14 lg:w-16" />
@@ -161,6 +170,25 @@ const Navbar = () => {
             </p>
           </div>
         </div>
+        <input type="checkbox" id="my-modal-4" className="modal-toggle" />
+        <div className="modal">
+          <div className="modal-box relative text-center w-1/3 max-w-full bg-color4">
+            <label htmlFor="my-modal-4" className="TitleShadow rounded-ful btn-ghost btn absolute right-2 top-2 rounded-3xl text-[18px] font-bold text-color1" >
+              ✕
+            </label>
+            <img src={Login} alt="login.svg" className="w-16" />
+
+            <p className="TitleShadow -mt-5 text-center text-[32px] font-bold text-color1 ">
+              Logout
+            </p>
+            <p className="TitleShadow mt-4 border-b-2 border-dashed pb-4 text-center text-[18px] text-color1">
+              Are You Sure ?
+            </p>
+
+            <CustomButton onClick={logout} id="btn-login" label="Logout" className="mt-4 rounded-2xl bg-color6 px-10 py-1 text-[16px] font-semibold text-white shadow-[1px_2px_4px_0px_rgba(0,0,0,0.5)] hover:bg-[rgb(0,140,255)] disabled:cursor-not-allowed disabled:bg-color2" />
+          </div>
+        </div>
+
       </div>
     </div>
   );

@@ -7,19 +7,11 @@ import { TfiPrinter } from "react-icons/tfi";
 import Footer from "../components/Footer";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ListMember = () => {
-  let member: {
-    name: string,
-    domicile: string,
-    gender: string,
-    age: string,
-    email: string,
-    job: string,
-    wa: string,
-    reason: string,
-    upload_file: string
-  }
+  const navigate = useNavigate()
+
   let [memberList, setMemberList] = useState<any[]>([])
   let [loading, setLoading] = useState<boolean>(false)
 
@@ -47,6 +39,9 @@ const ListMember = () => {
     fetchData();
   }, []);
 
+  const toDetail = (data: any) => {
+    navigate('/DetailMember', { state: { data: data } })
+  }
 
   // axios.get('https://sabilun.promaydo-tech.com/api/ramadhan')
   //   .then((resp) => {
@@ -105,7 +100,9 @@ const ListMember = () => {
               return (
                 <tr key={index}>
                   <td className="text-center">{index + 1}</td>
-                  <td className="text-center">{listValue.name}</td>
+                  <td className="text-center">
+                    <a onClick={() => toDetail(listValue)} >{listValue.name}</a>
+                  </td>
                   <td className="text-center">{listValue.wa}</td>
                   <td >{listValue.email}</td>
                   <td className="text-center">{listValue.domicile}</td>
