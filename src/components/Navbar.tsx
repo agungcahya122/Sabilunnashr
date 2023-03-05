@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 
 import "../styles/App.css";
 
@@ -6,10 +6,38 @@ import Sabilun from "../assets/navbar.svg";
 import Login from "../assets/login.svg";
 
 import { TbAlignLeft } from "react-icons/tb";
-import InputCustom from "./InputCustom";
 import CustomButton from "./CustomButton";
+import { useState } from "react";
+import axios from "axios";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+
+  const emailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+  const passChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPass(e.target.value);
+  };
+
+  const reqBody = {
+    email: email,
+    password: pass,
+  };
+
+  const login = () =>
+    axios
+      .post("https://sabilun.promaydo-tech.com/api/auth/login", reqBody)
+      .then((resp) => {
+        console.log(resp.data.access_token);
+        localStorage.setItem("token", resp.data.access_token);
+        if (resp.data.access_token) {
+          navigate("/ListMember");
+        }
+      });
   return (
     <div className="navbar sticky top-0 z-50 bg-color4 px-2 py-4 shadow-[0px_5px_10px_0px_rgba(0,0,0,0.25)] lg:px-10">
       <div className="">
@@ -104,8 +132,8 @@ const Navbar = () => {
             <div className="mt-16 flex flex-col gap-5 pl-2 md:flex-row md:gap-0 md:pl-10 lg:flex-row lg:gap-0 lg:pl-20">
               <div className="flex items-center gap-4">
                 <p className="text-[16px] font-semibold">E-mail :</p>
-                <InputCustom
-                  id="input-nama"
+                <input
+                  onChange={emailChange}
                   type="text"
                   placeholder="admin@gmail.com"
                   className="input-border input h-8 w-8/12 max-w-full rounded-2xl border-2 border-zinc-500 bg-color1 px-4 py-4 text-[14px] text-color5 placeholder-slate-400 md:text-[15px] lg:text-[16px]"
@@ -113,21 +141,21 @@ const Navbar = () => {
               </div>
 
               <div className="flex items-center gap-4">
-                <p className="text-[16px] font-semibold">Passowrd :</p>
-                <InputCustom
-                  id="input-nama"
-                  type="text"
+                <p className="text-[16px] font-semibold">Password :</p>
+                <input
+                  onChange={passChange}
+                  type="password"
                   placeholder="*********"
                   className="input-border input h-8 w-7/12 max-w-full rounded-2xl border-2 border-zinc-500 bg-color1 px-4 py-4 text-[14px] text-color5 placeholder-slate-400 md:w-6/12 md:text-[15px] lg:w-6/12 lg:text-[16px]"
                 />
               </div>
             </div>
             <CustomButton
+              onClick={login}
               id="btn-login"
               label="Login"
               className="mt-10 ml-[20vw] rounded-2xl bg-color6 px-10 py-1 text-[16px] font-semibold text-white shadow-[1px_2px_4px_0px_rgba(0,0,0,0.5)] hover:bg-[rgb(0,140,255)] disabled:cursor-not-allowed disabled:bg-color2 md:ml-[30vw] lg:ml-[27vw]"
             />
-
             <p className="mt-5 text-end text-[14px] text-color1 md:text-[15px] lg:text-[16px]">
               (just admin)
             </p>

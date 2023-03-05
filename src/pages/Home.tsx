@@ -20,12 +20,87 @@ import { IoCalendarOutline } from "react-icons/io5";
 import { BsCircleFill } from "react-icons/bs";
 import { TbPhoneCall } from "react-icons/tb";
 import { FiEdit3 } from "react-icons/fi";
+import axios from "axios";
 
-import InputCustom from "../components/InputCustom";
 import CustomButton from "../components/CustomButton";
 import Footer from "../components/Footer";
+import { useState } from "react";
 
 const Home = () => {
+  const [post, setPost] = useState("a");
+
+  const [domicile, setDomicile] = useState("");
+  const [gender, setGender] = useState("Laki - Laki");
+  const [age, setAge] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [job, setJob] = useState("");
+  const [wa, setWa] = useState("");
+  const [reason, setReason] = useState("");
+  const [file, setFile] = useState<File>();
+  const [imgSrc, setImgSrc] = useState<string>();
+
+  const domicileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDomicile(e.target.value);
+  };
+  const nameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+  const emailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+  const jobChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setJob(e.target.value);
+  };
+  const waChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setWa(e.target.value);
+  };
+  const ageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAge(e.target.value);
+  };
+  const reasonChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setReason(e.target.value);
+  };
+  const genderChange = (
+    e: React.ChangeEvent<HTMLSelectElement | HTMLOptionElement>
+  ) => {
+    setGender(e.target.value);
+  };
+  const fileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+    const selectedFile = files as FileList;
+    console.log(selectedFile?.[0].name);
+    setFile(selectedFile?.[0]);
+    setImgSrc(URL.createObjectURL(selectedFile?.[0]));
+  };
+
+  const bodyReq = {
+    name: name,
+    domicile: domicile,
+    gender: gender,
+    age: age,
+    email: email,
+    job: job,
+    wa: wa,
+    reason: reason,
+    upload_file: file,
+  };
+
+  const headers = {
+    "Content-Type": "multipart/form-data",
+  };
+
+  const ramadhanPost = () => {
+    axios
+      .post("https://sabilun.promaydo-tech.com/api/ramadhan", bodyReq, {
+        headers: headers,
+      })
+      .then((resp) => {
+        setPost(resp.data);
+        console.log(resp.data);
+      });
+  };
+
   return (
     <Layout>
       <Navbar />
@@ -438,8 +513,9 @@ const Home = () => {
           <div className="pr-2 md:w-6/12 lg:w-4/12">
             <div className="flex items-center gap-2">
               <p className="w-4/12 text-[16px]  font-semibold">Nama :</p>
-              <InputCustom
-                id="input-nama"
+              <input
+                onChange={nameChange}
+                id="name"
                 type="text"
                 placeholder="Tuliskan nama anda"
                 className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
@@ -447,51 +523,56 @@ const Home = () => {
             </div>
 
             <div className="mt-5 flex items-center gap-2">
-              <p className="w-4/12 text-[16px] font-semibold">Whatsapp :</p>
-              <InputCustom
-                id="input-nama"
+              <p className="w-4/12 text-[16px] font-semibold">Email :</p>
+              <input
+                onChange={emailChange}
+                id="email"
                 type="text"
-                placeholder="Tuliskan nomor anda"
+                placeholder="Tuliskan email anda"
                 className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
               />
             </div>
 
             <div className="mt-5 flex items-center gap-2">
-              <p className="w-4/12 text-[16px] font-semibold">E - mail :</p>
-              <InputCustom
-                id="input-nama"
-                type="text"
-                placeholder="Tuliskan e-mail anda"
+              <p className="w-4/12 text-[16px] font-semibold">Whatsapp :</p>
+              <input
+                onChange={waChange}
+                id="wa"
+                type="number"
+                placeholder="Tuliskan nomor whatsapp anda"
                 className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
               />
             </div>
 
             <div className="mt-5 flex items-center gap-2">
               <p className="w-4/12 text-[16px] font-semibold">Domisili :</p>
-              <InputCustom
-                id="input-nama"
+              <input
+                onChange={domicileChange}
+                id="domicile"
                 type="text"
-                placeholder="Domisili anda sekarang"
+                placeholder="Tempat tinggal anda sekarang"
                 className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
               />
             </div>
 
             <div className="mt-5 flex items-center gap-2">
               <p className="w-4/12 text-[16px] font-semibold">Pekerjaan :</p>
-              <InputCustom
-                id="input-nama"
+              <input
+                onChange={jobChange}
+                id="job"
                 type="text"
-                placeholder="Pekerjaan anda sekarang"
+                placeholder="Tuliskan pekerjaan anda"
                 className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
               />
             </div>
 
             <div className="mt-5 flex items-center gap-2">
               <p className="w-4/12 text-[16px] font-semibold">Usia :</p>
-              <InputCustom
-                id="input-nama"
-                type="text"
-                placeholder="Usia anda sekarang"
+              <input
+                onChange={ageChange}
+                id="age"
+                type="number"
+                placeholder="Tuliskan pekerjaan anda"
                 className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
               />
             </div>
@@ -499,16 +580,16 @@ const Home = () => {
             <div className="mt-5 flex items-center gap-1">
               <p className="w-4/12 text-[16px] font-semibold">Gender :</p>
               <select
-                defaultValue={"DEFAULT"}
+                onChange={genderChange}
                 name="option"
-                id="input-gender"
+                id="gender"
                 className="select-ghost select max-w-full rounded-lg border-2 border-zinc-500 text-color5"
               >
-                <option value="DEFALUT" disabled>
+                <option value=" " disabled>
                   Pilih Salah Satu
                 </option>
-                <option value="makanan">Laki - Laki</option>
-                <option value="minuman">Perempuan</option>
+                <option value="Laki - laki">Laki - Laki</option>
+                <option value="Perempuan">Perempuan</option>
               </select>
             </div>
           </div>
@@ -520,19 +601,19 @@ const Home = () => {
 
             <div className="flex flex-col items-center gap-5 md:flex-col lg:flex-row">
               <img
-                src=""
+                src={imgSrc}
                 alt="rekening.jpg"
                 className="mt-5 h-40 w-48 rounded-xl border-2 border-zinc-500 bg-contain bg-center bg-no-repeat"
-                style={{ backgroundImage: `URL(${Add})` }}
               />
-
               <div className="mt-auto">
                 <input
+                  onChange={fileChange}
+                  id="upload_file"
                   type="file"
                   className="block w-full text-[16px] text-slate-500 file:mr-4 file:rounded-xl file:border-2 file:border-zinc-200 file:bg-color4 file:py-2 file:px-6 file:text-[16px] file:font-semibold file:text-color1 hover:file:bg-[rgba(13,206,218,0.8)]"
                 />
                 <p className="mt-1 text-end text-[14px] italic text-zinc-500 md:text-end lg:text-start">
-                  * Jenis foto : . jpg
+                  * Jenis foto : .jpg
                 </p>
               </div>
             </div>
@@ -542,7 +623,8 @@ const Home = () => {
             </p>
 
             <textarea
-              id="input-alasan"
+              onChange={reasonChange}
+              id="reason"
               typeof="text"
               placeholder="Tuliskan alasan singkat kenapa anda tertarik"
               className="input-border input mt-2 h-20 w-9/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-2 py-2 text-[16px] text-color5 placeholder-slate-400"
@@ -551,7 +633,8 @@ const Home = () => {
         </div>
 
         <CustomButton
-          id="btn-formulir"
+          id="submit"
+          onClick={ramadhanPost}
           label="Mengirim Formulir Untuk Mendaftar"
           className="mb-16 mt-10 ml-[15vw] rounded-3xl bg-color6 py-3 px-6 text-[15px] font-semibold text-white hover:bg-[rgb(0,140,255)] disabled:cursor-not-allowed disabled:bg-color2 md:ml-[30vw] md:mt-10 md:text-[16px] lg:mt-14 lg:ml-[34vw] lg:text-[18px]"
         />
