@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 
 import { MdSearch } from "react-icons/md";
 import { TfiPrinter } from "react-icons/tfi";
+import Footer from "../components/Footer";
 
 const ListMember = () => {
   return (
@@ -71,6 +72,8 @@ const ListMember = () => {
           </tbody>
         </table>
       </div>
+
+      <Footer />
     </Layout>
   );
 };
