@@ -3,11 +3,11 @@ import Footer from "../components/Footer";
 import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
 import Bank from "../assets/bank.svg";
+import { useEffect } from "react";
 
 const DetailMember = () => {
   const location = useLocation()
   const data = location.state.data
-  data.upload_file = 'https://sabilun.promaydo-tech.com/storage/' + data.upload_file
   console.log(data)
 
   return (
@@ -61,7 +61,7 @@ const DetailMember = () => {
               bukti pembayran pendaftaran :
             </p>
             <div className="flex flex-col items-center gap-5 md:flex-col lg:flex-row">
-              <img src={data.upload_file} alt="Bukti Transfer" className="object-contain mt-2 h-52 w-full rounded-xl border-2 border-zinc-500 bg-contain bg-center bg-no-repeat m-auto" />
+              <img src={'https://sabilun.promaydo-tech.com/storage/' + data.upload_file} alt="Bukti Transfer" className="object-contain mt-2 h-52 w-full rounded-xl border-2 border-zinc-500 bg-contain bg-center bg-no-repeat m-auto" />
             </div>
 
             <p className="mt-5 text-[16px] font-semibold">

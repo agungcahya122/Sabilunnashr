@@ -13,6 +13,7 @@ import Adab from "../assets/adab.svg";
 import Meet from "../assets/meet.svg";
 import Bank from "../assets/bank.svg";
 import Loader from "../components/Loader";
+import Add from "../assets/add.svg";
 
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { TfiAngleDoubleDown } from "react-icons/tfi";
@@ -108,6 +109,14 @@ const Home = () => {
         } else {
           const val: any = resp.data.message
           toast.success(val)
+          Array.from(document.querySelectorAll('input')).forEach(
+            input => (input.value = "")
+          );
+          Array.from(document.querySelectorAll('textarea')).forEach(
+            textarea => (textarea.value = "")
+          );
+          const srcImg: any = document.getElementById('imgFile')
+          srcImg.src = { Add }
         }
         console.log(resp.data);
         setLoading(false)
@@ -528,7 +537,7 @@ const Home = () => {
         <div className="mt-10 flex w-full flex-col justify-center gap-10 px-5 md:mt-14 md:flex-row md:gap-16 md:px-8 lg:mt-16 lg:flex-row lg:gap-20 lg:px-8">
           <div className="pr-2 md:w-6/12 lg:w-4/12">
             <div className="flex items-center gap-2">
-              <p className="w-4/12 text-[16px]  font-semibold">Nama :</p>
+              <p className="w-4/12 text-[16px] font-semibold">Nama :</p>
               <input
                 onChange={nameChange}
                 id="name"
@@ -612,14 +621,15 @@ const Home = () => {
 
           <div className="md:w-6/12 lg:w-5/12">
             <p className="text-[16px] font-semibold">
-              Kirimkan bukti pembayran pendaftaran :
+              Kirimkan bukti pembayaran pendaftaran :
             </p>
 
             <div className="flex flex-col items-center gap-5 md:flex-col lg:flex-row">
               <img
                 src={imgSrc}
+                id="imgFile"
                 alt="rekening.jpg"
-                className="mt-5 h-40 w-48 rounded-xl border-2 border-zinc-500 bg-contain bg-center bg-no-repeat"
+                className="mt-5 h-40 w-48 rounded-xl border-2 border-zinc-500 bg-contain bg-center bg-no-repeat" style={{ backgroundImage: `URL(${Add})` }}
               />
               <div className="mt-auto">
                 <input

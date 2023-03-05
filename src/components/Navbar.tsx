@@ -48,9 +48,16 @@ const Navbar = () => {
         params: { token: token },
       })
       .then((resp) => {
-        console.log(resp.data);
-        localStorage.removeItem("token");
-        navigate("/");
+        console.log(resp.data)
+        if (resp.data.message == "Successfully logged out") {
+          toast.success("Successfully logged out")
+        }
+        localStorage.removeItem('token')
+        navigate('/')
+      }).catch((e) => {
+        localStorage.removeItem('token')
+        navigate('/')
+        console.log(e.message)
       })
       .catch((e) => {
         console.log(e.message);
