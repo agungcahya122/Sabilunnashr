@@ -136,6 +136,21 @@ const Navbar = () => {
               </label>
             )}
           </li>
+          {token ? (
+            <li>
+              <Link to={"/"}>Menu Home</Link>
+            </li>
+          ) : (
+            ""
+          )}
+
+          {token ? (
+            <li>
+              <Link to={"/ListMember"}>List Peserta</Link>
+            </li>
+          ) : (
+            ""
+          )}
         </ul>
 
         <input type="checkbox" id="my-modal-3" className="modal-toggle" />
