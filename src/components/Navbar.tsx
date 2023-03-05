@@ -9,11 +9,14 @@ import { TbAlignLeft } from "react-icons/tb";
 import CustomButton from "./CustomButton";
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const token = localStorage.getItem('token')
+
   const navigate = useNavigate()
 
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
@@ -29,23 +32,39 @@ const Navbar = () => {
     password: pass,
   };
 
-  const login = () => axios.post('https://sabilun.promaydo-tech.com/api/auth/login', reqBody)
-    .then((resp) => {
-      console.log(resp.data.access_token)
-      localStorage.setItem('token', resp.data.access_token)
-      if (resp.data.access_token) {
-        navigate('/ListMember')
-      }
-    })
+  const login = () => {
+    setLoading(true)
+    axios.post('https://sabilun.promaydo-tech.com/api/auth/login', reqBody)
+      .then((resp) => {
+        console.log(resp.data)
+        localStorage.setItem('token', resp.data.access_token)
+        setLoading(false)
+        if (resp.data.access_token) {
+          toast.success('login success')
+          navigate('/ListMember')
+        } else {
+          toast.warn('wrong username or password')
+        }
+      }).catch((e) => {
+        toast.warn('wrong username or password')
+      })
+  }
 
-  const logout = () => axios.post('https://sabilun.promaydo-tech.com/api/auth/logout', null, { params: { token: token } })
-    .then((resp) => {
-      console.log(resp.data)
-      localStorage.removeItem('token')
-      navigate('/')
-    }).catch((e) => {
-      console.log(e.message)
-    })
+  const logout = () => {
+    setLoading(true)
+    axios.post('https://sabilun.promaydo-tech.com/api/auth/logout', null, { params: { token: token } })
+      .then((resp) => {
+        console.log(resp.data)
+        if (resp.data.message == "Successfully logged out") {
+          toast.success("Successfully logged out")
+          localStorage.removeItem('token')
+          navigate('/')
+        }
+      }).catch((e) => {
+        console.log(e.message)
+      })
+    setLoading(false)
+  }
 
 
   return (
