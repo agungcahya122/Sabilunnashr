@@ -5,8 +5,55 @@ import Navbar from "../components/Navbar";
 import { MdSearch } from "react-icons/md";
 import { TfiPrinter } from "react-icons/tfi";
 import Footer from "../components/Footer";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const ListMember = () => {
+  let member: {
+    name: string,
+    domicile: string,
+    gender: string,
+    age: string,
+    email: string,
+    job: string,
+    wa: string,
+    reason: string,
+    upload_file: string
+  }
+  let [memberList, setMemberList] = useState<any[]>([])
+  let [loading, setLoading] = useState<boolean>(false)
+
+  if (localStorage.getItem('token') == null) {
+    return (
+      <Layout>
+        <Navbar />
+        login dulu
+      </Layout>
+    )
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const { data: response } = await axios.get('https://sabilun.promaydo-tech.com/api/ramadhan');
+        setMemberList(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+      setLoading(false);
+    }
+
+    fetchData();
+  }, []);
+
+
+  // axios.get('https://sabilun.promaydo-tech.com/api/ramadhan')
+  //   .then((resp) => {
+  //     // setMemberList(resp.data)
+  //     console.log(resp.data)
+  //   })
+  console.log(memberList)
   return (
     <Layout>
       <Navbar />
@@ -54,21 +101,18 @@ const ListMember = () => {
             </tr>
           </thead>
           <tbody className="border-x-2 border-[rgba(159,159,159,0.2)]">
-            <tr>
-              <td className="text-center">1</td>
-              <td>John Doe</td>
-              <td className="text-center">089788877667</td>
-              <td>johdoe@gmail.com</td>
-              <td className="text-center">Garum, Blitar</td>
-            </tr>
+            {memberList.map((listValue, index) => {
+              return (
+                <tr key={index}>
+                  <td className="text-center">{index + 1}</td>
+                  <td className="text-center">{listValue.name}</td>
+                  <td className="text-center">{listValue.wa}</td>
+                  <td >{listValue.email}</td>
+                  <td className="text-center">{listValue.domicile}</td>
+                </tr>
+              );
+            })}
 
-            <tr>
-              <td className="text-center">2</td>
-              <td>Imam Ismail</td>
-              <td className="text-center">0891009898788</td>
-              <td>imamismail12@gmail.com</td>
-              <td className="text-center">Pakis, Malang</td>
-            </tr>
           </tbody>
         </table>
       </div>
