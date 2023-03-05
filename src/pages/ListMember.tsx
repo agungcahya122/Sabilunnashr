@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Loader from "../components/Loader";
 
 const ListMember = () => {
   const navigate = useNavigate()
@@ -51,6 +52,7 @@ const ListMember = () => {
   console.log(memberList)
   return (
     <Layout>
+      {loading ? <Loader /> : <></>}
       <Navbar />
 
       <p className="mt-14 px-20 text-[36px] font-semibold tracking-wide text-color5">

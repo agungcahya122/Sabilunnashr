@@ -12,7 +12,7 @@ import User from "../assets/user.svg";
 import Adab from "../assets/adab.svg";
 import Meet from "../assets/meet.svg";
 import Bank from "../assets/bank.svg";
-import Add from "../assets/add.svg";
+import Loader from "../components/Loader";
 
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { TfiAngleDoubleDown } from "react-icons/tfi";
@@ -25,8 +25,12 @@ import axios from "axios";
 import CustomButton from "../components/CustomButton";
 import Footer from "../components/Footer";
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
+  const [msgWarning, setMsgWarning] = useState("");
+  const [loading, setLoading] = useState(false);
   const [post, setPost] = useState("a");
 
   const [domicile, setDomicile] = useState("");
@@ -91,18 +95,28 @@ const Home = () => {
   };
 
   const ramadhanPost = () => {
+    setLoading(true)
     axios
       .post("https://sabilun.promaydo-tech.com/api/ramadhan", bodyReq, {
         headers: headers,
       })
       .then((resp) => {
         setPost(resp.data);
+        if (resp.data.status != "success") {
+          const val: any = Object.values(resp.data.data)[0]
+          toast.warn(val[0])
+        } else {
+          const val: any = resp.data.message
+          toast.success(val)
+        }
         console.log(resp.data);
-      });
+        setLoading(false)
+      })
   };
 
   return (
     <Layout>
+      {loading ? <Loader /> : <></>}
       <Navbar />
       <div
         id="Home"
@@ -638,6 +652,7 @@ const Home = () => {
           label="Mengirim Formulir Untuk Mendaftar"
           className="mb-16 mt-10 ml-[15vw] rounded-3xl bg-color6 py-3 px-6 text-[15px] font-semibold text-white hover:bg-[rgb(0,140,255)] disabled:cursor-not-allowed disabled:bg-color2 md:ml-[30vw] md:mt-10 md:text-[16px] lg:mt-14 lg:ml-[34vw] lg:text-[18px]"
         />
+        <ToastContainer />
       </div>
 
       <Footer />
