@@ -6,7 +6,7 @@ import "../styles/App.css";
 import Instagram from "../assets/instagram.svg";
 import Dzikir from "../assets/dzikir.svg";
 import Masjid from "../assets/masjid.svg";
-import Kitab from "../assets/kitab.svg";
+import Moderator from "../assets/moderator.svg";
 import Wudlu from "../assets/wudlu.svg";
 import User from "../assets/user.svg";
 import Adab from "../assets/adab.svg";
@@ -153,7 +153,8 @@ const Home = () => {
             tadabbur, fikih syafi'i, akidah Ahlussunnah dan nasihat ulama
           </p>
           <p className="mt-8 ">
-            Pada bulan Ramadhan ini sabilun Nashr membuka kelas untuk
+            Pada bulan Ramadhan ini lebih tepatnya menjelang bulan Ramadhan ini
+            sabilun Nashr membuka kelas untuk
             <span className="font-semibold italic">
               {" "}
               spesial bulan Ramadhan{" "}
@@ -166,8 +167,8 @@ const Home = () => {
           </p>
 
           <div className="mt-10 flex flex-col gap-4 pl-0 pr-24 text-[15px] md:flex-row md:gap-8 md:pl-0 md:pr-0 md:text-[14px] lg:flex-row lg:gap-8 lg:pl-4 lg:pr-4 lg:text-[16px]">
-            <div className="flex gap-2 rounded-full bg-color6 px-6 py-2 shadow-[1px_2px_4px_0px_rgba(0,0,0,0.5)]">
-              <FiEdit3 className="h-5 w-5 md:h-6 md:w-6 lg:h-6 lg:w-6" />
+            <div className="flex items-center gap-2 rounded-full bg-color6 px-6 py-2 shadow-[1px_2px_4px_0px_rgba(0,0,0,0.5)]">
+              <FiEdit3 className="h-5 w-5 md:h-8 md:w-8 lg:h-6 lg:w-6" />
               Daftar kelas Ramadhan
             </div>
 
@@ -175,7 +176,7 @@ const Home = () => {
               <img
                 src={Instagram}
                 alt="logo.svg"
-                className="w-5 md:w-6 lg:w-6"
+                className="w-5 md:w-8 lg:w-6"
               />
               Kunjungi instagram kami
             </div>
@@ -243,7 +244,7 @@ const Home = () => {
           <img
             src={Adab}
             alt="adab.svg"
-            className="mt-5 ml-20 h-64 md:ml-4 md:h-64 lg:ml-4 lg:h-80"
+            className="mt-5 ml-24 h-64 md:ml-4 md:h-64 lg:ml-4 lg:h-80"
           />
         </div>
       </div>
@@ -379,13 +380,13 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="w-6/12 px-4 text-center text-color5">
+          <div className="w-6/12 px-1 text-center text-color5 md:px-4 lg:px-4">
             <img
-              src={Kitab}
+              src={Moderator}
               alt="kitab.svg"
-              className="mx-auto w-20 md:w-[7.5rem] lg:w-[7.5rem]"
+              className="mx-auto w-[25rem] md:w-[13rem] lg:w-[13rem]"
             />
-            <p className="mt-3 text-[16px] font-semibold md:text-[18px] lg:text-[18px]">
+            <p className="-mt-3 text-[16px] font-semibold md:text-[18px] lg:text-[18px]">
               NABIL IZZATURRAHMAN
             </p>
             <p className="mt-3 text-[12px] leading-4 md:text-[14px] lg:text-[14px]">
@@ -483,7 +484,7 @@ const Home = () => {
                 Contact Person :
               </p>
               <p className="flex gap-2 text-[14px] text-color1">
-                08922332323322332
+                0881-0819-85209
               </p>
             </div>
           </div>
@@ -494,8 +495,9 @@ const Home = () => {
           Contact Person
         </p>
         <ul className="TitleShadow ml-16 mt-2 hidden list-inside list-disc text-[16px] leading-loose text-color1 md:block lg:block">
-          <li>Ikhwan : ( 0881-0819-85209 )</li>
-          <li>Akhwat : ( 0859-6305-7535 )</li>
+          <li>Admin : ( 0881-0819-85209 )</li>
+          {/* <li>Ikhwan : ( 0881-0819-85209 )</li>
+          <li>Akhwat : ( 0859-6305-7535 )</li> */}
         </ul>
 
         <div className="ml-2 mt-16 mb-14 flex flex-row items-center gap-5 text-[16px] font-semibold leading-7 md:hidden lg:hidden ">
