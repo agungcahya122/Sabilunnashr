@@ -43,41 +43,33 @@ const Home = () => {
   const domicileChange = (e: React.ChangeEvent<HTMLInputElement>
   ) => {
     setDomicile(e.target.value)
-    console.log(e.target.value);
   }
   const nameChange = (e: React.ChangeEvent<HTMLInputElement>
   ) => {
     setName(e.target.value)
-    console.log(e.target.value);
   }
   const emailChange = (e: React.ChangeEvent<HTMLInputElement>
   ) => {
     setEmail(e.target.value)
-    console.log(e.target.value);
   }
   const jobChange = (e: React.ChangeEvent<HTMLInputElement>
   ) => {
     setJob(e.target.value)
-    console.log(e.target.value);
   }
   const waChange = (e: React.ChangeEvent<HTMLInputElement>
   ) => {
     setWa(e.target.value)
-    console.log(e.target.value);
   }
   const ageChange = (e: React.ChangeEvent<HTMLInputElement>
   ) => {
     setAge(e.target.value)
-    console.log(e.target.value);
   }
   const reasonChange = (e: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     setReason(e.target.value)
-    console.log(e.target.value);
   }
   const genderChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLOptionElement>
   ) => {
-    console.log(e.target.value);
     setGender(e.target.value)
   }
   const fileChange = (e: React.ChangeEvent<HTMLInputElement>
@@ -108,7 +100,6 @@ const Home = () => {
   const ramadhanPost = () => {
     axios.post('https://sabilun.promaydo-tech.com/api/ramadhan', bodyReq, { headers: headers }).then((resp) => {
       setPost(resp.data)
-      console.log(bodyReq)
       console.log(resp.data)
     })
   }
