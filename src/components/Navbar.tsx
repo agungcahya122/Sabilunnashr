@@ -6,6 +6,8 @@ import Sabilun from "../assets/navbar.svg";
 import Login from "../assets/login.svg";
 
 import { TbAlignLeft } from "react-icons/tb";
+import InputCustom from "./InputCustom";
+import CustomButton from "./CustomButton";
 
 const Navbar = () => {
   return (
@@ -75,17 +77,48 @@ const Navbar = () => {
           <div className="modal-box relative w-8/12 max-w-full bg-color4">
             <label
               htmlFor="my-modal-3"
-              className="rounded-ful btn-ghost btn absolute right-2 top-2 rounded-3xl text-[18px] font-bold text-color1"
+              className="TitleShadow rounded-ful btn-ghost btn absolute right-2 top-2 rounded-3xl text-[18px] font-bold text-color1"
             >
               ✕
             </label>
             <img src={Login} alt="login.svg" className="w-16" />
 
-            <p className="-mt-5 text-center text-[32px] font-bold text-color1">
+            <p className="TitleShadow -mt-5 text-center text-[32px] font-bold text-color1 ">
               Login
             </p>
-            <p className="ml-44 mr-44 mt-4 border-b-2 border-dashed pb-4 text-center text-[18px] text-color1">
+            <p className="TitleShadow ml-44 mr-44 mt-4 border-b-2 border-dashed pb-4 text-center text-[18px] text-color1">
               Login for your account and lets enjoy your website
+            </p>
+
+            <div className="mt-16 flex pl-20">
+              <div className="flex items-center gap-4">
+                <p className="text-[16px] font-semibold">E-mail :</p>
+                <InputCustom
+                  id="input-nama"
+                  type="text"
+                  placeholder="admin@gmail.com"
+                  className="input-border input h-8 w-8/12 max-w-full rounded-2xl border-2 border-zinc-500 bg-color1 px-4 py-4 text-[16px] text-color5 placeholder-slate-400"
+                />
+              </div>
+
+              <div className="flex items-center gap-4">
+                <p className="text-[16px] font-semibold">Passowrd :</p>
+                <InputCustom
+                  id="input-nama"
+                  type="text"
+                  placeholder="*********"
+                  className="input-border input h-8 w-6/12 max-w-full rounded-2xl border-2 border-zinc-500 bg-color1 px-4 py-4 text-[16px] text-color5 placeholder-slate-400"
+                />
+              </div>
+            </div>
+            <CustomButton
+              id="btn-login"
+              label="Login"
+              className="mt-10 ml-[27vw] rounded-2xl bg-color6 px-10 py-1 text-[16px] font-semibold text-white shadow-[1px_2px_4px_0px_rgba(0,0,0,0.5)] hover:bg-[rgb(0,140,255)] disabled:cursor-not-allowed disabled:bg-color2"
+            />
+
+            <p className="mt-5 text-end text-[16px] text-color1">
+              (just admin)
             </p>
           </div>
         </div>

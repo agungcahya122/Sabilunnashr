@@ -136,16 +136,16 @@ const Home = () => {
         </div>
 
         <div className="w-full pt-5 pb-5 text-center text-color5 md:w-4/12 md:pt-10 md:pl-8 lg:w-4/12 lg:pt-10 lg:pl-20">
-          <p className="text-[28px] font-bold md:text-[28px] lg:text-[32px]">
+          <p className="pr-8 text-[28px] font-bold md:pr-8 md:text-[28px] lg:pr-0 lg:text-[32px]  ">
             Jaga Adab
           </p>
-          <p className="mt-4 pr-4 pl-4 text-[16px] font-bold md:pl-0 md:pr-10 md:text-[14px] lg:pl-0 lg:pr-10 lg:text-[16px]">
+          <p className="mt-4 pr-4 pl-4 text-[16px] font-bold md:pl-0 md:pr-8 md:text-[14px] lg:pl-0 lg:pr-10 lg:text-[16px]">
             Ketika menyebut nama Allah ta'ala dan Rasulullah SAW
           </p>
           <img
             src={Adab}
             alt="adab.svg"
-            className="ml-28 mt-5 h-64 md:ml-4 md:h-80 lg:ml-4 lg:h-80"
+            className="mt-5 ml-20 h-64 md:ml-4 md:h-64 lg:ml-4 lg:h-80"
           />
         </div>
       </div>
@@ -200,7 +200,7 @@ const Home = () => {
         id="Wudlu"
         className="flex flex-col-reverse bg-color1 pt-5 pb-10 text-[15px] text-color5 md:flex-row md:pt-10 md:text-[14px] lg:flex-row lg:pt-10 lg:text-[16px]"
       >
-        <div className="mt-5 w-full pl-8 pr-5 text-justify md:mt-0 md:w-7/12 md:pl-20 md:pr-14 lg:mt-0 lg:w-7/12 lg:pl-20 lg:pr-14">
+        <div className="mt-5 w-full pl-8 pr-5 text-justify md:mt-0 md:w-7/12 md:pl-16 md:pr-14 lg:mt-0 lg:w-7/12 lg:pl-20 lg:pr-14">
           <p>
             Asy-Syaikh Hasan bin Ahmad Al-Kaf merincikan syarat keadaan tidur
             yang tidak membatalkan wudlu :
@@ -228,7 +228,7 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="w-full pl-0 text-center md:w-5/12 md:pl-16 md:text-left lg:w-5/12 lg:pl-16 lg:text-left">
+        <div className="w-full pl-0 text-center md:w-5/12 md:pl-10 md:text-left lg:w-5/12 lg:pl-16 lg:text-left">
           <p className="text-[26px] font-semibold leading-loose md:text-[28px] lg:text-[32px]">
             Tertidur Saat Duduk
           </p>
@@ -245,41 +245,52 @@ const Home = () => {
 
       <div
         id="Jarfisya"
-        className="relative w-full bg-color4 text-color1 md:pb-8 lg:pb-8 lg:text-[16px]"
+        className="relative w-full bg-color4 pb-5 text-[15px] text-color1 md:pb-8 md:text-[16px] lg:pb-8 lg:text-[16px]"
       >
-        <p className="absolute -top-3 left-[33vw] w-4/12 rounded-3xl bg-color3 px-0 py-2 text-center font-semibold text-color5 shadow-[1px_4px_4px_0px_rgba(0,0,0,0.3)] md:text-[20px] lg:text-[20px]">
+        <p className="absolute -top-3 left-[18vw] w-8/12 rounded-3xl bg-color3 py-2 text-center text-[16px] font-semibold text-color5 shadow-[1px_4px_4px_0px_rgba(0,0,0,0.3)] md:left-[33vw] md:w-5/12 md:text-[20px] lg:left-[33vw] lg:w-4/12 lg:text-[20px]">
           Ingin belajar fiqih lebih dalam ?
         </p>
 
-        <p className="TitleShadow font-semibold text-color1 lg:pl-8 lg:pt-16 lg:text-[16px]">
+        <p className="TitleShadow pt-14 text-[13px] font-semibold text-color1 md:pt-14 md:text-[16px] lg:pl-8 lg:pt-16  lg:text-[16px]">
           <span className="decoration-TitleShadow underline decoration-color1 decoration-2 underline-offset-8">
             SPESIAL R
           </span>
           AMADHAN
         </p>
-        <p className="TitleShadow text-center font-semibold text-color1 lg:mt-4 lg:text-[38px]">
+
+        <p className="TitleShadow mt-6 text-center text-[24px] font-semibold text-color1 md:text-[32px] lg:text-[38px]">
           DAURAH BERKAH ILMU
         </p>
-        <p className="TitleShadow -mt-2 text-center font-semibold text-[#FFDD5E] lg:text-[38px]">
+        <p className="TitleShadow -mt-2 text-center text-[24px] font-semibold text-[#FFDD5E] md:text-[32px] lg:text-[38px]">
           FIKIH RAMADHAN
         </p>
 
-        <div className="flex w-7/12 flex-row justify-between rounded-2xl bg-color1 shadow-[1px_4px_4px_0px_rgba(0,0,0,0.4)] lg:mx-auto lg:mt-8 lg:py-6 lg:px-16">
-          <div className="w-6/12 text-center text-[14px] text-color5">
-            <img src={User} alt="user.svg" className="mx-auto" />
-            <p className="mt-3 text-[18px] font-semibold">PERMANA PUTRA</p>
-            <p className="mt-3 leading-4">
+        <div className="mx-auto mt-5 flex w-10/12 flex-row justify-between rounded-2xl bg-color1 px-4 py-6 shadow-[1px_4px_4px_0px_rgba(0,0,0,0.4)] md:mt-8 md:w-9/12 md:px-12 md:py-6 lg:mt-8 lg:w-7/12 lg:py-6 lg:px-16">
+          <div className="w-6/12 text-center text-color5">
+            <img
+              src={User}
+              alt="user.svg"
+              className="mx-auto w-32 md:w-44 lg:w-44"
+            />
+            <p className="mt-3 text-[16px] font-semibold md:text-[18px] lg:text-[18px]">
+              PERMANA PUTRA
+            </p>
+            <p className="mt-3 text-[12px] leading-4 md:text-[14px] lg:text-[14px]">
               Mahasiswa S1 Syariah LIPIA <br /> Founder & admin
               <span className="font-semibold"> @sabilunnashr</span>
             </p>
           </div>
 
-          <div className="w-6/12 px-4 text-center text-[14px] text-color5">
-            <img src={Kitab} alt="kitab.svg" className="mx-auto" />
-            <p className="mt-3 text-[18px] font-semibold">
+          <div className="w-6/12 px-4 text-center text-color5">
+            <img
+              src={Kitab}
+              alt="kitab.svg"
+              className="mx-auto w-20 md:w-[7.5rem] lg:w-[7.5rem]"
+            />
+            <p className="mt-3 text-[16px] font-semibold md:text-[18px] lg:text-[18px]">
               NABIL IZZATURRAHMAN
             </p>
-            <p className="mt-3 leading-4">
+            <p className="mt-3 text-[12px] leading-4 md:text-[14px] lg:text-[14px]">
               Mahasiswa I'dad Lughawi <br />
               <span className="">LIPIA JAKARTA</span>
             </p>
@@ -387,7 +398,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mt-8 w-full bg-color1 pb-5 text-color5">
+      {/* <div className="mt-8 w-full bg-color1 pb-5 text-color5">
         <p className="TitleShadow text-center text-[32px] font-semibold">
           FORMULIR PENDAFTARAN
         </p>
@@ -515,7 +526,7 @@ const Home = () => {
           label="Mengirim Formulir Untuk Mendaftar"
           className="mb-16 mt-16 ml-[34vw] rounded-2xl bg-color6 py-2 px-6 text-[18px] font-semibold text-white hover:bg-[rgb(0,140,255)] disabled:cursor-not-allowed disabled:bg-color2"
         />
-      </div>
+      </div> */}
 
       <Footer />
     </Layout>
