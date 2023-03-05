@@ -243,7 +243,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* <div
+      <div
         id="Jarfisya"
         className="relative w-full bg-color4 pb-5 text-[15px] text-color1 md:pb-8 md:text-[16px] lg:pb-8 lg:text-[16px]"
       >
@@ -397,7 +397,7 @@ const Home = () => {
           <TfiAngleDoubleDown className="h-12 w-12 font-bold" />
           <TfiAngleDoubleDown className="h-12 w-12 font-bold" />
         </div>
-      </div> */}
+      </div>
 
       <div className="mt-8 w-full bg-color1 pb-5 text-color5">
         <p className="TitleShadow text-center text-[26px] font-semibold md:text-[30px] lg:text-[32px]">
