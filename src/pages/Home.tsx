@@ -393,7 +393,7 @@ const Home = () => {
         </p>
 
         <div className="mt-16 flex flex-row justify-center gap-10">
-          <div className="flex w-4/12 flex-col gap-4 pr-2 ">
+          <div className="flex w-4/12 flex-col gap-8 pr-2 ">
             <div className="flex items-center gap-4">
               <p className="w-5/12 text-[16px]  font-semibold">Nama :</p>
               <InputCustom
