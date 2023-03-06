@@ -1,3 +1,4 @@
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
@@ -7,7 +8,9 @@ import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
 
 import { ToastContainer, toast } from "react-toastify";
+import withReactContent from "sweetalert2-react-content";
 import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
 import "../styles/App.css";
 
 import Instagram from "../assets/instagram.svg";
@@ -32,6 +35,8 @@ import { ImWhatsapp } from "react-icons/im";
 
 const Home = () => {
   const [msgWarning, setMsgWarning] = useState("");
+  const MySwal = withReactContent(Swal);
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [post, setPost] = useState("a");
 
@@ -104,9 +109,19 @@ const Home = () => {
       })
       .then((resp) => {
         setPost(resp.data);
+
+        var link = "https://wa.me/62881081985209?text=(nama)(jeniskelamin)";
+
         if (resp.data.status != "success") {
           const val: any = Object.values(resp.data.data)[0];
           toast.warn(val[0]);
+          MySwal.fire({
+            icon: "info",
+            html: `
+            <p class="text-color5 mb-5 text-[20px] capitalize">konfirmasi via WhatsApp setelah mendaftar untuk masuk grub</p>
+            <a class="text-color1 bg-color6 px-4 py-0 rounded-full" href="${link}">Menuju Whatsapp</a>`,
+            showConfirmButton: false,
+          });
         } else {
           const val: any = resp.data.message;
           toast.success(val);
@@ -668,9 +683,12 @@ const Home = () => {
         />
         <ToastContainer />
 
-        <div className="absolute bottom-8 right-10 rounded-full bg-green-500 p-3 hover:cursor-pointer hover:bg-green-600">
-          <ImWhatsapp className="h-8 w-8 text-color1" />
-        </div>
+        <Link
+          to={"https://wa.me/62881081985209?text=(nama)(jeniskelamin)"}
+          className="absolute bottom-8 right-5 rounded-full bg-green-500 p-2 hover:cursor-pointer hover:bg-green-600 md:right-10 md:p-3 lg:right-10 lg:p-3"
+        >
+          <ImWhatsapp className="h-6 w-6 text-color1 md:h-8 md:w-8 lg:h-8 lg:w-8" />
+        </Link>
       </div>
 
       <Footer />
