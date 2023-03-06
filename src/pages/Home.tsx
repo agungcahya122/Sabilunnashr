@@ -1,18 +1,25 @@
+import { useState } from "react";
+import axios from "axios";
+
+import CustomButton from "../components/CustomButton";
+import Footer from "../components/Footer";
 import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../styles/App.css";
 
 import Instagram from "../assets/instagram.svg";
+import Moderator from "../assets/moderator.svg";
+import Loader from "../components/Loader";
 import Dzikir from "../assets/dzikir.svg";
 import Masjid from "../assets/masjid.svg";
-import Moderator from "../assets/moderator.svg";
 import Wudlu from "../assets/wudlu.svg";
 import User from "../assets/user.svg";
 import Adab from "../assets/adab.svg";
 import Meet from "../assets/meet.svg";
 import Bank from "../assets/bank.svg";
-import Loader from "../components/Loader";
 import Add from "../assets/add.svg";
 
 import { AiOutlineClockCircle } from "react-icons/ai";
@@ -21,13 +28,7 @@ import { IoCalendarOutline } from "react-icons/io5";
 import { BsCircleFill } from "react-icons/bs";
 import { TbPhoneCall } from "react-icons/tb";
 import { FiEdit3 } from "react-icons/fi";
-import axios from "axios";
-
-import CustomButton from "../components/CustomButton";
-import Footer from "../components/Footer";
-import { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ImWhatsapp } from "react-icons/im";
 
 const Home = () => {
   const [msgWarning, setMsgWarning] = useState("");
@@ -96,7 +97,7 @@ const Home = () => {
   };
 
   const ramadhanPost = () => {
-    setLoading(true)
+    setLoading(true);
     axios
       .post("https://sabilun.promaydo-tech.com/api/ramadhan", bodyReq, {
         headers: headers,
@@ -104,23 +105,23 @@ const Home = () => {
       .then((resp) => {
         setPost(resp.data);
         if (resp.data.status != "success") {
-          const val: any = Object.values(resp.data.data)[0]
-          toast.warn(val[0])
+          const val: any = Object.values(resp.data.data)[0];
+          toast.warn(val[0]);
         } else {
-          const val: any = resp.data.message
-          toast.success(val)
-          Array.from(document.querySelectorAll('input')).forEach(
-            input => (input.value = "")
+          const val: any = resp.data.message;
+          toast.success(val);
+          Array.from(document.querySelectorAll("input")).forEach(
+            (input) => (input.value = "")
           );
-          Array.from(document.querySelectorAll('textarea')).forEach(
-            textarea => (textarea.value = "")
+          Array.from(document.querySelectorAll("textarea")).forEach(
+            (textarea) => (textarea.value = "")
           );
-          const srcImg: any = document.getElementById('imgFile')
-          srcImg.src = { Add }
+          const srcImg: any = document.getElementById("imgFile");
+          srcImg.src = { Add };
         }
         console.log(resp.data);
-        setLoading(false)
-      })
+        setLoading(false);
+      });
   };
 
   return (
@@ -629,7 +630,8 @@ const Home = () => {
                 src={imgSrc}
                 id="imgFile"
                 alt="rekening.jpg"
-                className="mt-5 h-40 w-48 rounded-xl border-2 border-zinc-500 bg-contain bg-center bg-no-repeat" style={{ backgroundImage: `URL(${Add})` }}
+                className="mt-5 h-40 w-48 rounded-xl border-2 border-zinc-500 bg-contain bg-center bg-no-repeat"
+                style={{ backgroundImage: `URL(${Add})` }}
               />
               <div className="mt-auto">
                 <input
@@ -665,6 +667,10 @@ const Home = () => {
           className="mb-16 mt-10 ml-[15vw] rounded-3xl bg-color6 py-3 px-6 text-[15px] font-semibold text-white hover:bg-[rgb(0,140,255)] disabled:cursor-not-allowed disabled:bg-color2 md:ml-[30vw] md:mt-10 md:text-[16px] lg:mt-14 lg:ml-[34vw] lg:text-[18px]"
         />
         <ToastContainer />
+
+        <div className="absolute bottom-8 right-10 rounded-full bg-green-500 p-3 hover:cursor-pointer hover:bg-green-600">
+          <ImWhatsapp className="h-8 w-8 text-color1" />
+        </div>
       </div>
 
       <Footer />
