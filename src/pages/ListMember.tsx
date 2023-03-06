@@ -6,24 +6,40 @@ import { MdSearch } from "react-icons/md";
 import { TfiPrinter } from "react-icons/tfi";
 import Footer from "../components/Footer";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
+import { toast, ToastContainer } from "react-toastify";
 
 const ListMember = () => {
   const navigate = useNavigate();
 
-  let [memberList, setMemberList] = useState<any[]>([]);
-  let [loading, setLoading] = useState<boolean>(false);
+  let [memberList, setMemberList] = useState<any[]>([])
+  let [loading, setLoading] = useState<boolean>(false)
+  const [search, setSearch] = useState<string>("");
+  const [filter, setFilter] = useState<any[]>([])
 
-  if (localStorage.getItem("token") == null) {
+  if (localStorage.getItem('token') == null) {
+    toast.error('you must login!')
     return (
       <Layout>
         <Navbar />
-        login dulu
+        <ToastContainer />
       </Layout>
     );
   }
+
+  const filterList = useCallback(() => {
+    const filtered = memberList.filter((item) =>
+      item.name.toLocaleLowerCase().includes(search.toLowerCase())
+    );
+    setFilter(filtered);
+  }, [memberList, search]);
+
+  useEffect(() => {
+    filterList();
+  }, [filterList]);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,7 +62,7 @@ const ListMember = () => {
     navigate("/DetailMember", { state: { data: data } });
   };
 
-  console.log(memberList);
+  console.log(memberList)
   return (
     <Layout>
       {loading ? <Loader /> : <></>}
@@ -56,9 +72,11 @@ const ListMember = () => {
         List Peserta JarFisya
       </p>
 
+
       <div className="mt-16 flex flex-col-reverse items-center justify-center px-4 md:flex-row md:px-10 lg:flex-row lg:px-20">
         <div className="mt-8 flex w-[22rem] gap-2 rounded-full bg-color4 py-2 px-6 md:mt-0 lg:mt-0">
-          <InputCustom
+          <input
+            onChange={(e) => setSearch(e.target.value)}
             id="input-search"
             type="search"
             placeholder="Mencari Nama Peserta .... ?"
@@ -73,8 +91,8 @@ const ListMember = () => {
         </div>
       </div>
 
-      <div className="mt-8 mb-[29rem] w-full overflow-auto px-4 md:px-10 lg:px-20">
-        <table className="table w-full overflow-x-auto">
+      <div className="mt-8 w-full px-20">
+        <table className="table w-full ">
           <thead className="">
             <tr>
               <th className="w-1/12 bg-color4 text-center text-[14px] text-color1">
@@ -100,20 +118,22 @@ const ListMember = () => {
                 <tr key={index}>
                   <td className="text-center">{index + 1}</td>
                   <td className="text-center">
-                    <a onClick={() => toDetail(listValue)}>{listValue.name}</a>
+                    <a onClick={() => toDetail(listValue)} >{listValue.name}</a>
                   </td>
                   <td className="text-center">{listValue.wa}</td>
-                  <td>{listValue.email}</td>
+                  <td >{listValue.email}</td>
                   <td className="text-center">{listValue.domicile}</td>
                 </tr>
               );
             })}
+
           </tbody>
         </table>
       </div>
 
+
       <Footer />
-    </Layout>
+    </Layout >
   );
 };
 
