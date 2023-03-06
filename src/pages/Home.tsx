@@ -185,17 +185,19 @@ const Home = () => {
           <div className="mt-10 flex flex-col gap-4 pl-0 pr-24 text-[15px] md:flex-row md:gap-8 md:pl-0 md:pr-0 md:text-[14px] lg:flex-row lg:gap-8 lg:pl-4 lg:pr-4 lg:text-[16px]">
             <div className="flex items-center gap-2 rounded-full bg-color6 px-6 py-2 shadow-[1px_2px_4px_0px_rgba(0,0,0,0.5)]">
               <FiEdit3 className="h-5 w-5 md:h-8 md:w-8 lg:h-6 lg:w-6" />
-              Daftar kelas Ramadhan
+              <a href="#Jarfisya">Daftar kelas Ramadhan</a>
             </div>
 
-            <div className="flex gap-2 rounded-full bg-color6 px-6 py-2 shadow-[1px_2px_4px_0px_rgba(0,0,0,0.5)]">
-              <img
-                src={Instagram}
-                alt="logo.svg"
-                className="w-5 md:w-8 lg:w-6"
-              />
-              Kunjungi instagram kami
-            </div>
+            <Link to={"https://www.instagram.com/sabilunnashr/"}>
+              <div className="flex gap-2 rounded-full bg-color6 px-6 py-2 shadow-[1px_2px_4px_0px_rgba(0,0,0,0.5)]">
+                <img
+                  src={Instagram}
+                  alt="logo.svg"
+                  className="w-5 md:w-8 lg:w-6"
+                />
+                Kunjungi instagram kami
+              </div>
+            </Link>
           </div>
         </div>
       </div>
