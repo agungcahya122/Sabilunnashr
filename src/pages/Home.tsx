@@ -117,7 +117,7 @@ const Home = () => {
           const val: any = Object.values(resp.data.data)[0];
           toast.warn(val[0]);
         } else {
-          setWaConfrim(true)
+          setWaConfrim(true);
           const val: any = resp.data.message;
           toast.success(val);
           Array.from(document.querySelectorAll("input")).forEach(
@@ -138,7 +138,7 @@ const Home = () => {
         }
         console.log(resp.data);
         setLoading(false);
-      })
+      });
     // .catch((e) => {
     //   var link = "https://wa.me/62881081985209?text=(nama)(jeniskelamin)";
     //   toast.warn('sukes');
@@ -695,22 +695,19 @@ const Home = () => {
           id="submit"
           onClick={ramadhanPost}
           label="Mengirim Formulir Untuk Mendaftar"
-          className="block mb-2 mt-10 m-auto rounded-3xl bg-color6 py-3 px-6 text-[15px] font-semibold text-white hover:bg-[rgb(0,140,255)] disabled:cursor-not-allowed disabled:bg-color2 md:mt-10 md:text-[16px] lg:mt-12 lg:text-[18px]"
+          className="m-auto mb-2 mt-10 block rounded-3xl bg-color6 py-3 px-6 text-[15px] font-semibold text-white hover:bg-[rgb(0,140,255)] disabled:cursor-not-allowed disabled:bg-color2 md:mt-10 md:text-[16px] lg:mt-12 lg:text-[18px]"
         />
 
-        {waConfirm ?
-          <Link to={"https://wa.me/62881081985209?text=(nama)(jeniskelamin)"} className="block m-auto mb-2 mt-2 w-max rounded-3xl bg-green-500 py-2 px-6 text-[15px] font-semibold text-white hover:bg-green-600 disabled:cursor-not-allowed disabled:bg-color2 md:mt-2 md:text-[16px] lg:mt-2 lg:text-[18px]">
+        {/* {waConfirm ? (
+          <Link
+            to={"https://wa.me/62881081985209?text=(nama)(jeniskelamin)"}
+            className="m-auto mb-2 mt-2 block w-max rounded-3xl bg-green-500 py-2 px-6 text-[15px] font-semibold text-white hover:bg-green-600 disabled:cursor-not-allowed disabled:bg-color2 md:mt-2 md:text-[16px] lg:mt-2 lg:text-[18px]"
+          >
             <span>Konfirmasi Via Whatsapp</span>
-            <ImWhatsapp className="inline ml-2 h-6 w-6 text-color1 md:h-8 md:w-8 lg:h-8 lg:w-8" />
+            <ImWhatsapp className="ml-2 inline h-6 w-6 text-color1 md:h-8 md:w-8 lg:h-8 lg:w-8" />
           </Link>
-          :
-          null}
-        <Link
-          to={"https://wa.me/62881081985209?text=(nama)(jeniskelamin)"}
-          className="absolute bottom-8 right-5 rounded-full bg-green-500 p-2 hover:cursor-pointer hover:bg-green-600 md:right-10 md:p-3 lg:right-10 lg:p-3"
-        >
-          <ImWhatsapp className="h-6 w-6 text-color1 md:h-8 md:w-8 lg:h-8 lg:w-8" />
-        </Link>
+        ) : null} */}
+
         <ToastContainer />
       </div>
 
