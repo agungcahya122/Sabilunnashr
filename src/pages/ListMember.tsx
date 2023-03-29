@@ -6,7 +6,7 @@ import { MdSearch } from "react-icons/md";
 import { TfiPrinter } from "react-icons/tfi";
 import Footer from "../components/Footer";
 import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import { toast, ToastContainer } from "react-toastify";
@@ -16,7 +16,9 @@ const ListMember = () => {
 
   let [memberList, setMemberList] = useState<any[]>([])
   let [loading, setLoading] = useState<boolean>(false)
-  const [search, setSearch] = useState<string>("");
+
+  const [nameSearch, setNameSearch] = useState<string>("");
+  const [paketSearch, setPaketSearch] = useState<string>("");
   const [filter, setFilter] = useState<any[]>([])
 
   if (localStorage.getItem('token') == null) {
@@ -30,53 +32,86 @@ const ListMember = () => {
   }
 
   const filterList = useCallback(() => {
-    const filtered = memberList.filter((item) =>
-      item.name.toLocaleLowerCase().includes(search.toLowerCase())
+    let filtered = memberList.filter((item) =>
+      item.name.toLocaleLowerCase().includes(nameSearch.toLowerCase())
     );
+
+    if (memberList[0]?.paket) {
+      filtered = memberList.filter((item) =>
+        item.paket.toLocaleLowerCase().includes(paketSearch.toLowerCase())
+      );
+    }
     setFilter(filtered);
-  }, [memberList, search]);
+  }, [memberList, nameSearch, paketSearch]);
 
   useEffect(() => {
     filterList();
   }, [filterList]);
 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const { data: response } = await axios.get(
-          "https://sabilun.promaydo-tech.com/api/ramadhan"
-        );
-        setMemberList(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-      setLoading(false);
-    };
+  const fetchData = async (url: string) => {
+    setLoading(true);
+    try {
+      const { data: response } = await axios.get(url);
+      setMemberList(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
+  };
 
-    fetchData();
+
+  useEffect(() => {
+    fetchData("https://sabilun.promaydo-tech.com/api/ramadhan");
   }, []);
+
+  const changeEvent = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    let urlEvent = ""
+    if (e.target.value == "Ramadhan") {
+      urlEvent = "https://sabilun.promaydo-tech.com/api/ramadhan"
+    } else if (e.target.value == "Kelas Intensif") {
+      urlEvent = "https://sabilun.promaydo-tech.com/api/event2"
+    }
+    console.log(urlEvent);
+
+    fetchData(urlEvent)
+    filterList()
+  }
 
   const toDetail = (data: any) => {
     navigate("/DetailMember", { state: { data: data } });
   };
 
-  console.log(memberList)
+  console.log(filter)
   return (
     <Layout>
       {loading ? <Loader /> : <></>}
       <Navbar />
 
-      <p className="mt-14 px-4 text-[28px] font-semibold tracking-wide text-color5 md:px-10 md:text-[32px] lg:px-20 lg:text-[36px]">
+      <p className="mt-10 px-4 text-[28px] font-semibold tracking-wide text-color5 md:px-10 md:text-[32px] lg:px-20 lg:text-[36px]">
         List Peserta JarFisya
       </p>
-
-
-      <div className="mt-16 flex flex-col-reverse items-center justify-center px-4 md:flex-row md:px-10 lg:flex-row lg:px-20">
+      <div className="relative my-4 px-4 lg:px-20 md:px-10">
+        <div className="items-center absolute flex">
+          <p className="w-4/12 text-[16px] font-semibold">Event :</p>
+          <select
+            onChange={changeEvent}
+            name="paket"
+            id="gender"
+            className="ml-4 relative select-ghost select max-w-full rounded-lg border-2 border-zinc-500 text-color5"
+          >
+            <option value=" " disabled>
+              Pilih Salah Satu
+            </option>
+            <option selected value="Ramadhan">Ramadhan</option>
+            <option value="Kelas Intensif">Kelas Intensif</option>
+          </select>
+        </div>
+      </div>
+      <div className="mt-20 flex flex-col-reverse items-center justify-center px-4 md:flex-row md:px-10 lg:flex-row lg:px-20">
         <div className="mt-8 flex w-[22rem] gap-2 rounded-full bg-color4 py-2 px-6 md:mt-0 lg:mt-0">
           <input
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => setNameSearch(e.target.value)}
             id="input-search"
             type="search"
             placeholder="Mencari Nama Peserta .... ?"
@@ -84,36 +119,51 @@ const ListMember = () => {
           />
           <MdSearch className="h-8 w-8 text-color5" />
         </div>
-
+        {memberList[0]?.paket == null ? <></> :
+          <div className="ml-2 mt-8 flex w-[10rem] gap-2 rounded-full bg-color4 py-2 px-6 md:mt-0 lg:mt-0">
+            <input
+              onChange={(e) => setPaketSearch(e.target.value)}
+              id="input-search"
+              type="search"
+              placeholder="Paket Peserta ?"
+              className="input-border input h-8 w-full max-w-full rounded-full bg-color4 px-3 text-[15px] font-medium tracking-wider text-color5 placeholder-color5 md:text-[15px] lg:text-[16px]"
+            />
+            <MdSearch className="h-8 w-8 text-color5" />
+          </div>
+        }
         <div className="mt-0 ml-auto flex h-10 gap-3 rounded-xl bg-color4 py-2 px-8 text-center text-[16px] font-medium text-color5 hover:cursor-pointer hover:bg-[rgba(13,206,218,0.7)]">
           <TfiPrinter className="h-5 w-5 text-color5" />
           Print to Excel
         </div>
       </div>
 
-      <div className="mt-8 w-full px-20">
-        <table className="table w-full ">
-          <thead className="">
+      <div className="my-8 w-full m-auto px-10">
+        <table className="table py-2 w-full h-full">
+          <thead className="text-center">
             <tr>
               <th className="w-1/12 bg-color4 text-center text-[14px] text-color1">
                 No
               </th>
-              <th className="w-2/12 bg-color4 text-[14px] text-color1">
+              <th className="w-3/12 bg-color4 text-[14px] text-color1">
                 Nama Peserta
               </th>
-              <th className="w-3/12 bg-color4 text-center text-[14px] text-color1">
+              <th className="w-2/12 bg-color4 text-center text-[14px] text-color1">
                 Telepon
               </th>
-              <th className="w-2/12 bg-color4 text-[14px] text-color1">
+              <th className="w-5/12 bg-color4 text-center text-[14px] text-color1">
                 E - mail
               </th>
               <th className="w-2/12 bg-color4 text-center text-[14px] text-color1">
                 Domisili
               </th>
+              {memberList[0]?.paket == null ? <></> :
+                <th className="w-1/12 bg-color4 text-center text-[14px] text-color1">
+                  Paket
+                </th>}
             </tr>
           </thead>
-          <tbody className="border-x-2 border-[rgba(159,159,159,0.2)]">
-            {memberList.map((listValue, index) => {
+          <tbody className="border-x-2 border-[rgba(159,159,159,0.2)] w-full">
+            {filter.map((listValue, index) => {
               return (
                 <tr key={index}>
                   <td className="text-center">{index + 1}</td>
@@ -121,8 +171,10 @@ const ListMember = () => {
                     <a onClick={() => toDetail(listValue)} >{listValue.name}</a>
                   </td>
                   <td className="text-center">{listValue.wa}</td>
-                  <td >{listValue.email}</td>
+                  <td className="text-center">{listValue.email}</td>
                   <td className="text-center">{listValue.domicile}</td>
+                  {listValue.paket == null ?
+                    <></> : <td className="text-center">{listValue.paket}</td>}
                 </tr>
               );
             })}
@@ -130,7 +182,6 @@ const ListMember = () => {
           </tbody>
         </table>
       </div>
-
 
       <Footer />
     </Layout >

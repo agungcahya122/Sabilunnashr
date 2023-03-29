@@ -54,6 +54,14 @@ const DetailMember = () => {
               <p className="w-4/12 text-[16px] font-semibold">Gender :</p>
               <p className="w-8/12 max-w-full border-zinc-500 bg-color1 py-2 text-[16px] text-color5 ">{data.gender}</p>
             </div>
+
+            {data.paket != null ?
+              <div className="flex items-center gap-1">
+                <p className="w-4/12 text-[16px] font-semibold">Paket :</p>
+                <p className="w-8/12 max-w-full border-zinc-500 bg-color1 py-2 text-[16px] text-color5 ">{data?.paket}</p>
+              </div>
+              : <></>}
+
           </div>
 
           <div className="md:w-6/12 lg:w-5/12 text-center">

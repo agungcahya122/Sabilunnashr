@@ -36,65 +36,32 @@ import { ImWhatsapp } from "react-icons/im";
 const Home = () => {
   const MySwal = withReactContent(Swal);
 
-  const [waConfirm, setWaConfrim] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [post, setPost] = useState("a");
-
-  const [domicile, setDomicile] = useState("");
-  const [gender, setGender] = useState("Laki - Laki");
-  const [age, setAge] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [job, setJob] = useState("");
-  const [wa, setWa] = useState("");
-  const [reason, setReason] = useState("");
-  const [file, setFile] = useState<File>();
   const [imgSrc, setImgSrc] = useState<string>();
+  const [data, setData] = useState({
+    gender: "laki-laki",
+    paket: 1,
+  })
 
-  const domicileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDomicile(e.target.value);
-  };
-  const nameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-  const emailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-  const jobChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setJob(e.target.value);
-  };
-  const waChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setWa(e.target.value);
-  };
-  const ageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAge(e.target.value);
-  };
-  const reasonChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setReason(e.target.value);
-  };
-  const genderChange = (
-    e: React.ChangeEvent<HTMLSelectElement | HTMLOptionElement>
-  ) => {
-    setGender(e.target.value);
-  };
-  const fileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const name = e.target.name
+    const value = e.target.value
+    setData(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
+  }
+
+  const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     const selectedFile = files as FileList;
     console.log(selectedFile?.[0].name);
-    setFile(selectedFile?.[0]);
+    setData(prevState => ({
+      ...prevState,
+      upload_file: selectedFile?.[0]
+    }))
     setImgSrc(URL.createObjectURL(selectedFile?.[0]));
-  };
-
-  const bodyReq = {
-    name: name,
-    domicile: domicile,
-    gender: gender,
-    age: age,
-    email: email,
-    job: job,
-    wa: wa,
-    reason: reason,
-    upload_file: file,
+    // setFile(selectedFile?.[0]);
   };
 
   const headers = {
@@ -103,21 +70,19 @@ const Home = () => {
 
   const ramadhanPost = () => {
     setLoading(true);
+    console.log(data)
     axios
-      .post("https://sabilun.promaydo-tech.com/api/ramadhan", bodyReq, {
-        // .post("", bodyReq, {
+      // .post("https://sabilun.promaydo-tech.com/api/ramadhan", bodyReq, {
+      .post("https://sabilun.promaydo-tech.com/api/event2", data, {
         headers: headers,
       })
       .then((resp) => {
-        setPost(resp.data);
-
         var link = "https://wa.me/62881081985209?text=(nama)(jeniskelamin)";
+        console.log(resp.data);
 
-        if (resp.data.status != "success") {
-          const val: any = Object.values(resp.data.data)[0];
-          toast.warn(val[0]);
+        if (resp.data.status != true) {
+          toast.warn(resp.data.data);
         } else {
-          setWaConfrim(true);
           const val: any = resp.data.message;
           toast.success(val);
           Array.from(document.querySelectorAll("input")).forEach(
@@ -128,11 +93,17 @@ const Home = () => {
           );
           const srcImg: any = document.getElementById("imgFile");
           srcImg.src = { Add };
+          setData({
+            gender: "laki-laki",
+            paket: 1,
+          })
+
+
           MySwal.fire({
             icon: "info",
             html: `
             <p class="text-color5 mb-5 text-[20px] capitalize">konfirmasi via WhatsApp setelah mendaftar untuk masuk grub</p>
-            <a class="text-color1 bg-color6 px-4 py-0 rounded-full" href="${link}">Menuju Whatsapp</a>`,
+            <a class="text-color1 bg-color6 px-4 py-2 rounded-full" href="${link}">Menuju Whatsapp</a>`,
             showConfirmButton: false,
           });
         }
@@ -149,7 +120,7 @@ const Home = () => {
     //       <a class="text-color1 bg-color6 px-4 py-0 rounded-full" href="${link}">Menuju Whatsapp</a>`,
     //     showConfirmButton: false,
     //   });
-    //   setLoading(false);
+    setLoading(false);
     // });
   };
 
@@ -396,8 +367,8 @@ const Home = () => {
           FIKIH RAMADHAN
         </p>
 
-        <div className="mx-auto mt-5 flex w-10/12 flex-row justify-between rounded-2xl bg-color1 px-4 py-6 shadow-[1px_4px_4px_0px_rgba(0,0,0,0.4)] md:mt-8 md:w-9/12 md:px-12 md:py-6 lg:mt-8 lg:w-7/12 lg:py-6 lg:px-16">
-          <div className="w-6/12 text-center text-color5">
+        <div className="m-auto mt-5 flex w-10/12 rounded-2xl bg-color1 px-4 py-6 shadow-[1px_4px_4px_0px_rgba(0,0,0,0.4)] md:mt-8 md:w-9/12 md:px-12 md:py-6 lg:mt-8 lg:w-7/12 lg:py-6 lg:px-16">
+          <div className="m-auto text-center text-color5">
             <img
               src={User}
               alt="user.svg"
@@ -412,67 +383,45 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="w-6/12 px-1 text-center text-color5 md:px-4 lg:px-4">
-            <img
-              src={Moderator}
-              alt="kitab.svg"
-              className="mx-auto w-[25rem] md:w-[13rem] lg:w-[13rem]"
-            />
-            <p className="-mt-3 text-[16px] font-semibold md:text-[18px] lg:text-[18px]">
-              NABIL IZZATURRAHMAN
-            </p>
-            <p className="mt-3 text-[12px] leading-4 md:text-[14px] lg:text-[14px]">
-              Mahasiswa I'dad Lughawi <br />
-              <span className="">LIPIA JAKARTA</span>
-            </p>
-          </div>
+
         </div>
 
-        <p className="text-colo1 mt-10 pl-8 text-[16px] font-semibold md:mt-16 md:pl-8 md:text-[20px] lg:mt-20 lg:pl-16 lg:text-[20px]">
-          Topik yang akan dibahas :
+        <p className="text-colo1 mt-6 pl-8 text-[16px] font-semibold md:mt-12 md:pl-8 md:text-[20px] lg:mt-14 lg:pl-16 lg:text-[20px]">
+          Untuk umum, baik laki-laki maupun perempuan. Kuota terbatas! <><br /> <br /></>
+        </p>
+        <p className="text-colo1 pl-8 text-[15px] font-semibold md:pl-8 md:text-[16px] lg:pl-16 lg:text-[16px] lg:w-4/6">
+          Bismillahi wa ‘ala barakatillah. Kali ini Sabilun Nashr membuka peluang emas bagi Anda yang ingin belajar fikih dasar Mazhab Syafi’i, akidah Ahlussunnah wal Jamaah sekaligus akhlak.
         </p>
 
         <div className="mt-5 flex flex-col pl-12 text-justify text-[15px]  text-color1 md:flex-col md:pl-14 md:text-[16px] lg:flex-row lg:pl-20 lg:text-[16px]">
-          <div className="flex w-11/12 flex-col md:w-11/12 md:flex-row lg:w-6/12 lg:flex-row">
-            <ul className="mr-0 w-11/12 list-outside list-disc leading-loose md:mr-16 md:w-6/12 md:leading-relaxed lg:mr-16 lg:w-6/12 lg:leading-relaxed">
-              <li>Niat puasa dilafadzkan ?</li>
-              <li>
-                Pembatal puasa kontemporer (batalkah puasa karena memakai
-                inhaler ?)
-              </li>
-              <li>
-                Fidyah, dari siapa dan untuk siapa ? Kasus bumil dan busui
-              </li>
-              <li>Apa hukum renang saat puasa ?</li>
-              <li>Urutan hukum renang saat puasa ?</li>
-              <li>Salat tarawih 11 rakaat atau 23 rakaat ?</li>
-              <li>Adakah shalawat di sela-sela salat Tarawih ?</li>
+          <div className="flex w-11/12 flex-col md:w-11/12 lg:w-6/12 ">
+            <ul className="mr-0 w-11/12 list-outside list-decimal leading-loose md:mr-16 md:w-11/12 md:leading-relaxed lg:w-11/12 lg:leading-relaxed">
+              <p className="text-xl font-extrabold -ml-4">Rincian kelas</p>
+              <li>Kelas JarFiSya Safinah (Level 1 Batch 3) -  kitab Safinatun Naja</li>
+              <li>Kelas BERAKAL (Belajar Akidah-Akhlak) - kitab Al-‘Aqidah Ath-Thahawiyyah dan Bidayatul Hidayah</li>
+              <li> Kelas Gabungan JarFiSya + BERAKAL </li>
             </ul>
 
-            <ul className="mr-0 w-11/12 list-outside list-disc leading-loose md:mr-0 md:w-6/12 md:leading-relaxed lg:mr-16 lg:w-6/12 lg:leading-relaxed">
-              <li>Mulai kapan qunut witir ?</li>
-              <li>
-                Berapa kadar minim i'tikaf ? dan solusi i'tikaf untuk pekerja ?
-              </li>
-              <li>Lailatulqdar menurut Mazhab Syafi'i</li>
-              <li>Bolehkah zakat fitrah dengan uang ?</li>
-              <li>Kupas tuntas zakat fitrah dan alokasinya</li>
-              <li>Dan masih banyak lagi</li>
+            <ul className="mr-0 w-11/12 list-outside list-disc leading-loose md:mr-0 md:mt-10 md:w-6/12 md:leading-relaxed lg:mr-16 lg:mt-10 lg:w-6/12 lg:leading-relaxed">
+              <p className="text-xl font-extrabold  -ml-4">Fasilitas Lengkap</p>
+              <li>Rekaman ulang khusus peserta</li>
+              <li>Modul materi</li>
+              <li>E-Certificate</li>
+              <li>Ijazah sanad</li>
+              <li>Tanya jawab di akhir pertemuan</li>
+              <li>Grup WhatsApp terpisah laki-laki dan perempuan</li>
+              <li>Kuis pekanan</li>
+              <li>Konsultasi/pertanyaan via japri dengan pemateri</li>
             </ul>
+            <p className="mt-6 -ml-4 border-dashed border-2 p-3 rounded-lg">
+              *Syarat mendaftar:
+              • Mention 5 akun IG teman Anda di kolom komentar di Instagram kami <a className="italic font-bold" href="https://instagram.com/sabilunnashr">instagram.com/sabilunnashr</a>, atau
+              • Share flyer ke 3 grup WA Anda.
+            </p>
           </div>
 
-          <div className=" mt-8 w-full pl-14 md:mt-8 md:w-full md:pl-64 lg:mt-0 lg:w-6/12 lg:pl-24">
-            <p className="rounded-tl-3xl rounded-bl-3xl bg-color6 px-8 py-3 text-[18px] font-semibold leading-7 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] md:text-[24px] lg:text-[24px]">
-              Fasilitas : <br />
-              <span className="text-[15px] font-normal md:text-[16px] lg:text-[16px]">
-                Tanya jawab, modul materi, recording,
-              </span>{" "}
-              <span className="text-[15px] md:text-[16px] lg:text-[16px]">
-                e - certificate
-              </span>
-            </p>
-
-            <div className="mt-5 ml-8 flex rounded-tl-2xl rounded-bl-2xl bg-color6 px-5 py-2 text-[24px] font-semibold shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] md:px-8 lg:px-8">
+          <div className="mt-8 w-full pl-14 md:mt-8 md:w-full md:pl-64 lg:mt-0 lg:w-6/12 lg:pl-24">
+            <div className="mt-5 ml-16 flex rounded-tl-2xl rounded-bl-2xl bg-color6 px-5 py-2 text-[24px] font-semibold shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] md:px-8 lg:px-8">
               <p className="pr-4 text-[28px] md:pr-14 md:text-[46px] lg:pr-14 lg:text-[46px]">
                 40
                 <span className="text-[20px] font-normal md:text-[28px] lg:text-[28px]">
@@ -480,18 +429,61 @@ const Home = () => {
                 </span>
               </p>
 
-              <div className="flex flex-col justify-center text-[15px] md:text-[18px] lg:text-[18px]">
-                <p className="flex gap-3 border-l-2 border-color1 pl-4 align-middle md:pl-10 lg:pl-10">
-                  <IoCalendarOutline className="hidden h-5 w-5 md:flex lg:flex" />
-                  <span className="font-normal">Ahad, </span> 19 Maret 2023
+              <div className="flex flex-col justify-center">
+                <p className="flex gap-3 border-l-2 border-color1 pl-2 align-middle md:pl-4 lg:pl-4 text-[15px] md:text-[25px] lg:text-[25px]">
+                  <span className="font-normal">Kelas JarFiSya Safinah </span>
                 </p>
 
-                <p className="flex gap-3 border-l-2 border-color1 pt-1 pl-4 md:pl-10 lg:pl-10">
-                  <AiOutlineClockCircle className="hidden h-6 w-6 md:flex lg:flex" />
-                  08.00 - 10.30 <span className="font-normal">WIB</span>
+                <p className="flex gap-3 border-l-2 border-color1 pt-1 pl-2 md:pl-4 lg:pl-4 text-[10px] md:text-[13px] lg:text-[13px]">
+                  <span className="font-normal">(Level 1 Batch 3) -  kitab Safinatun Naja</span>
                 </p>
               </div>
             </div>
+            <div className="mt-5 ml-8 flex rounded-tl-2xl rounded-bl-2xl bg-color6 px-5 py-2 text-[24px] font-semibold shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] md:px-8 lg:px-8">
+              <p className="mt-2 pr-2 text-[28px] md:pr-10 md:text-[46px] lg:pr-10 lg:text-[46px]">
+                160
+                <span className="text-[20px] font-normal md:text-[28px] lg:text-[28px]">
+                  k
+                </span>
+              </p>
+
+              <div className="flex flex-col justify-center">
+                <p className="flex gap-3 border-l-2 border-color1 pl-2 align-middle md:pl-4 lg:pl-4 text-[15px] md:text-[25px] lg:text-[25px]">
+                  <span className="font-normal">Kelas BERAKAL</span>
+                </p>
+
+                <p className="flex border-l-2 border-color1 pt-1 pl-2 md:pl-4 lg:pl-4 text-[10px] md:text-[13px] lg:text-[13px]">
+                  <span className="font-normal">(Belajar Akidah-Akhlak) - kitab Al-‘Aqidah Ath-Thahawiyyah dan Bidayatul Hidayah</span>
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-5 flex rounded-tl-2xl rounded-bl-2xl bg-color6 px-5 py-2 text-[24px] font-semibold shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] md:px-8 lg:px-8">
+              <span className="-ml-4 pr-2 text-[13px] md:pr-2 md:text-[22px] lg:pr-2 lg:text-[22px]">
+                <span className="line-through">200</span>
+                <span className="no-underline text-[20px] font-normal md:text-[28px] lg:text-[28px]">
+                  k
+                </span>
+              </span>
+              <span className="mt-2 pr-2 text-[28px] md:pr-8 md:text-[46px] lg:pr-8 lg:text-[46px]">
+                170
+                <span className="text-[20px] font-normal md:text-[28px] lg:text-[28px]">
+                  k
+                </span>
+              </span>
+
+              <div className="flex flex-col justify-center">
+                <p className="flex gap-3 border-l-2 border-color1 pl-2 align-middle md:pl-4 lg:pl-4 text-[15px] md:text-[25px] lg:text-[25px]">
+                  <span className="font-normal">Kelas Gabungan</span>
+                </p>
+
+                <p className="flex border-l-2 border-color1 pt-1 pl-2 md:pl-4 lg:pl-4 text-[10px] md:text-[13px] lg:text-[13px]">
+                  <span className="font-normal">JarFiSya + BERAKAL </span>
+                </p>
+              </div>
+            </div>
+
+
 
             <p className="ml-20 mt-5 flex items-center rounded-tl-2xl rounded-bl-2xl bg-color6 px-5 py-3 text-[14px] font-semibold leading-7 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] md:px-14 md:text-[18px] lg:px-14 lg:text-[18px]">
               <BsCircleFill className="mr-2 h-4 w-4 text-red-600" />
@@ -546,7 +538,7 @@ const Home = () => {
 
         <div className="mt-8 flex items-center justify-center gap-3 text-[20px] font-semibold text-color1 md:gap-5 md:text-[28px] lg:gap-5 lg:text-[30px]">
           <IoCalendarOutline className="TitleShadow h-14 w-14" />
-          <p className="TitleShadow">Mulai 02 Maret s.d 17 Maret 2023</p>
+          <p className="TitleShadow">Mulai 31 Maret s.d. 31 Mei 2023</p>
         </div>
 
         <p className="TitleShadow mt-8 flex items-center justify-center gap-5 text-[16px] font-semibold text-color1 md:text-[24px] lg:text-[26px]">
@@ -571,8 +563,9 @@ const Home = () => {
             <div className="flex items-center gap-2">
               <p className="w-4/12 text-[16px] font-semibold">Nama :</p>
               <input
-                onChange={nameChange}
+                onChange={handleChangeInput}
                 id="name"
+                name="name"
                 type="text"
                 placeholder="Tuliskan nama anda"
                 className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
@@ -582,8 +575,9 @@ const Home = () => {
             <div className="mt-5 flex items-center gap-2">
               <p className="w-4/12 text-[16px] font-semibold">Email :</p>
               <input
-                onChange={emailChange}
+                onChange={handleChangeInput}
                 id="email"
+                name="email"
                 type="text"
                 placeholder="Tuliskan email anda"
                 className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
@@ -593,8 +587,9 @@ const Home = () => {
             <div className="mt-5 flex items-center gap-2">
               <p className="w-4/12 text-[16px] font-semibold">Whatsapp :</p>
               <input
-                onChange={waChange}
+                onChange={handleChangeInput}
                 id="wa"
+                name="wa"
                 type="number"
                 placeholder="Tuliskan nomor whatsapp anda"
                 className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
@@ -604,8 +599,9 @@ const Home = () => {
             <div className="mt-5 flex items-center gap-2">
               <p className="w-4/12 text-[16px] font-semibold">Domisili :</p>
               <input
-                onChange={domicileChange}
+                onChange={handleChangeInput}
                 id="domicile"
+                name="domicile"
                 type="text"
                 placeholder="Tempat tinggal anda sekarang"
                 className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
@@ -615,8 +611,9 @@ const Home = () => {
             <div className="mt-5 flex items-center gap-2">
               <p className="w-4/12 text-[16px] font-semibold">Pekerjaan :</p>
               <input
-                onChange={jobChange}
+                onChange={handleChangeInput}
                 id="job"
+                name="job"
                 type="text"
                 placeholder="Tuliskan pekerjaan anda"
                 className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
@@ -626,8 +623,9 @@ const Home = () => {
             <div className="mt-5 flex items-center gap-2">
               <p className="w-4/12 text-[16px] font-semibold">Usia :</p>
               <input
-                onChange={ageChange}
+                onChange={handleChangeInput}
                 id="age"
+                name="age"
                 type="number"
                 placeholder="Tuliskan pekerjaan anda"
                 className="input-border input h-8 w-8/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-4 py-5 text-[16px] text-color5 placeholder-slate-400"
@@ -637,8 +635,8 @@ const Home = () => {
             <div className="mt-5 flex items-center gap-1">
               <p className="w-4/12 text-[16px] font-semibold">Gender :</p>
               <select
-                onChange={genderChange}
-                name="option"
+                onChange={handleChangeInput}
+                name="gender"
                 id="gender"
                 className="select-ghost select max-w-full rounded-lg border-2 border-zinc-500 text-color5"
               >
@@ -652,21 +650,35 @@ const Home = () => {
           </div>
 
           <div className="md:w-6/12 lg:w-5/12">
+            <div className="mb-5 flex items-center gap-1">
+              <p className="w-4/12 text-[16px] font-semibold">Pilih Paket :</p>
+              <select
+                onChange={handleChangeInput}
+                name="paket"
+                id="gender"
+                className="select-ghost select max-w-full rounded-lg border-2 border-zinc-500 text-color5"
+              >
+                <option value=" " disabled>
+                  Pilih Salah Satu
+                </option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+              </select>
+            </div>
             <p className="text-[16px] font-semibold">
               Kirimkan bukti pembayaran pendaftaran :
             </p>
-
             <div className="flex flex-col items-center gap-5 md:flex-col lg:flex-row">
               <img
                 src={imgSrc}
                 id="imgFile"
                 alt="rekening.jpg"
-                className="mt-5 h-40 w-48 rounded-xl border-2 border-zinc-500 bg-contain bg-center bg-no-repeat"
+                className="mt-3 h-40 w-48 rounded-xl border-2 border-zinc-500 bg-contain bg-center bg-no-repeat"
                 style={{ backgroundImage: `URL(${Add})` }}
               />
               <div className="mt-auto">
                 <input
-                  onChange={fileChange}
+                  onChange={handleChangeFile}
                   id="upload_file"
                   type="file"
                   className="block w-full text-[16px] text-slate-500 file:mr-4 file:rounded-xl file:border-2 file:border-zinc-200 file:bg-color4 file:py-2 file:px-6 file:text-[16px] file:font-semibold file:text-color1 hover:file:bg-[rgba(13,206,218,0.8)]"
@@ -677,13 +689,14 @@ const Home = () => {
               </div>
             </div>
 
-            <p className="mt-5 text-[16px] font-semibold">
+            <p className="mt-2 text-[16px] font-semibold">
               Alasan Singkat Mendaftar :
             </p>
 
             <textarea
-              onChange={reasonChange}
+              onChange={handleChangeInput}
               id="reason"
+              name="reason"
               typeof="text"
               placeholder="Tuliskan alasan singkat kenapa anda tertarik"
               className="input-border input mt-2 h-20 w-9/12 max-w-full rounded-lg border-2 border-zinc-500 bg-color1 px-2 py-2 text-[16px] text-color5 placeholder-slate-400"

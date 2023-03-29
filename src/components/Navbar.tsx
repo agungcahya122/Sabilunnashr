@@ -15,7 +15,6 @@ const Navbar = () => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
@@ -35,11 +34,20 @@ const Navbar = () => {
     axios
       .post("https://sabilun.promaydo-tech.com/api/auth/login", reqBody)
       .then((resp) => {
-        console.log(resp.data.access_token);
+        console.log(resp.data);
         localStorage.setItem("token", resp.data.access_token);
         if (resp.data.access_token) {
           navigate("/ListMember");
+        } else {
+          toast.warning("username or password invalid")
         }
+      }).catch((e) => {
+        if (e.response.status == 401) {
+          toast.warning("username or password invalid")
+        } else {
+          toast.error("something wrong")
+        }
+
       });
 
   const logout = () =>
