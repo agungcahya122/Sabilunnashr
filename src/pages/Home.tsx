@@ -83,7 +83,7 @@ const Home = () => {
         var link = "https://wa.me/62881081985209?text=(nama)(jeniskelamin)";
         console.log(resp.data);
 
-        if (resp.data.status != true) {
+        if (resp.data.status != "success") {
           toast.warn(resp.data.data);
         } else {
           const val: any = resp.data.message;
@@ -256,7 +256,7 @@ const Home = () => {
           Ingin belajar fikih, akidah, dan akhlak lebih dalam ?
         </p>
 
-        <p className="TitleShadow pt-18 mt-6 text-center text-[24px] font-semibold text-color1 md:pt-18 md:text-[32px] lg:pt-20 lg:text-[38px]">KELAS ONLINE INTENSIF</p>
+        <p className="TitleShadow pt-18 mt-6 text-center text-[24px] font-semibold text-color1 md:pt-20 md:text-[32px] lg:pt-20 lg:text-[38px]">KELAS ONLINE INTENSIF</p>
         <p className="TitleShadow -mt-2 text-center text-[24px] font-semibold text-[#FFDD5E] md:text-[32px] lg:text-[38px]">FIKIH DAN AKIDAH-AKHLAK</p>
 
         <div className="m-auto mt-5 flex w-10/12 rounded-2xl bg-color1 px-4 py-6 shadow-[1px_4px_4px_0px_rgba(0,0,0,0.4)] md:mt-8 md:w-9/12 md:px-12 md:py-6 lg:mt-8 lg:w-7/12 lg:py-6 lg:px-16">
