@@ -145,7 +145,7 @@ const Home = () => {
 
           <div className="mt-10 flex flex-col gap-4 pl-0 pr-24 text-[15px] md:flex-row md:gap-8 md:pl-0 md:pr-0 md:text-[14px] lg:flex-row lg:gap-8 lg:pl-4 lg:pr-4 lg:text-[16px]">
             <div className="flex items-center gap-2 rounded-full bg-color6 px-6 py-2 shadow-[1px_2px_4px_0px_rgba(0,0,0,0.5)]">
-              <FiEdit3 className="h-5 w-5 md:h-8 md:w-8 lg:h-6 lg:w-6" />
+              <FiEdit3 className="h-5 w-6 md:h-8 md:w-8 lg:h-6 lg:w-10" />
               <a href="#Jarfisya">Daftar Disini</a>
             </div>
 
@@ -253,16 +253,11 @@ const Home = () => {
 
       <div id="Jarfisya" className="relative w-full bg-color4 pb-5 text-[15px] text-color1 md:pb-8 md:text-[16px] lg:pb-8 lg:text-[16px]">
         <p className="absolute -top-3 left-[18vw] w-8/12 rounded-3xl bg-color3 py-2 text-center text-[16px] font-semibold text-color5 shadow-[1px_4px_4px_0px_rgba(0,0,0,0.3)] md:left-[33vw] md:w-5/12 md:text-[20px] lg:left-[33vw] lg:w-4/12 lg:text-[20px]">
-          Ingin belajar fiqih lebih dalam ?
+          Ingin belajar fikih, akidah, dan akhlak lebih dalam ?
         </p>
 
-        <p className="TitleShadow pt-14 text-[13px] font-semibold text-color1 md:pt-14 md:text-[16px] lg:pl-8 lg:pt-16  lg:text-[16px]">
-          <span className="decoration-TitleShadow underline decoration-color1 decoration-2 underline-offset-8">SPESIAL R</span>
-          AMADHAN
-        </p>
-
-        <p className="TitleShadow mt-6 text-center text-[24px] font-semibold text-color1 md:text-[32px] lg:text-[38px]">DAURAH BERKAH ILMU</p>
-        <p className="TitleShadow -mt-2 text-center text-[24px] font-semibold text-[#FFDD5E] md:text-[32px] lg:text-[38px]">FIKIH RAMADHAN</p>
+        <p className="TitleShadow pt-18 mt-6 text-center text-[24px] font-semibold text-color1 md:pt-18 md:text-[32px] lg:pt-20 lg:text-[38px]">KELAS ONLINE INTENSIF</p>
+        <p className="TitleShadow -mt-2 text-center text-[24px] font-semibold text-[#FFDD5E] md:text-[32px] lg:text-[38px]">FIKIH DAN AKIDAH-AKHLAK</p>
 
         <div className="m-auto mt-5 flex w-10/12 rounded-2xl bg-color1 px-4 py-6 shadow-[1px_4px_4px_0px_rgba(0,0,0,0.4)] md:mt-8 md:w-9/12 md:px-12 md:py-6 lg:mt-8 lg:w-7/12 lg:py-6 lg:px-16">
           <div className="m-auto text-center text-color5">
@@ -306,7 +301,7 @@ const Home = () => {
               <li>Konsultasi/pertanyaan via japri dengan pemateri</li>
             </ul>
             <p className="mt-6 -ml-4 rounded-lg border-2 border-dashed p-3">
-              *Syarat mendaftar: • Mention 5 akun IG teman Anda di kolom komentar di Instagram kami{" "}
+              *Syarat mendaftar: <><br /></>• Mention 5 akun IG teman Anda di kolom komentar di Instagram kami{" "}
               <a className="font-bold italic" href="https://instagram.com/sabilunnashr">
                 instagram.com/sabilunnashr
               </a>
