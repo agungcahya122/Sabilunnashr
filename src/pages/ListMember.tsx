@@ -1,16 +1,19 @@
+import React, { useCallback, useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import moment from "moment";
+import axios from "axios";
+import ExportExcel from "../components/ExcelExport";
+
 import InputCustom from "../components/InputCustom";
+import Loader from "../components/Loader";
 import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
-
-import { MdSearch } from "react-icons/md";
-import { TfiPrinter } from "react-icons/tfi";
 import Footer from "../components/Footer";
-import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Loader from "../components/Loader";
-import { toast, ToastContainer } from "react-toastify";
-import moment from "moment";
+
+import { TfiPrinter } from "react-icons/tfi";
+import { MdSearch } from "react-icons/md";
+
 // import XLSX from "xlsx";
 
 // function exportToExcel(data: any) {
@@ -96,6 +99,24 @@ const ListMember = () => {
   };
 
   // console.log(filter);
+
+  const datas = [
+    { name: 'John', age: 25 },
+    { name: 'Jane', age: 30 },
+    { name: 'Bob', age: 35 },
+  ];
+
+  // const handleExport = () => {
+  //   const data = datas;
+  //   const header = ['Name', 'Age'];
+  //   const csvData = [header, ...data].map(e => e.join(',')).join('\n');
+
+  //   const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+  //   saveAs(blob, 'data.csv');
+  // };
+
+  console.log("filter data :", filter)
+
   return (
     <Layout>
       {loading ? <Loader /> : <></>}
@@ -156,6 +177,12 @@ const ListMember = () => {
           <TfiPrinter className="h-5 w-5 text-color5" />
           Print to Excel
         </div>
+      </div>
+
+      <div>
+        <ExportExcel
+          excelData={datas}
+        />
       </div>
 
       <div className="m-auto my-8 w-full px-10">
