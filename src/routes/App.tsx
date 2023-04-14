@@ -4,6 +4,7 @@ import { useCookies } from "react-cookie";
 import Home from "../pages/Home";
 import DetailMember from "../pages/DetailMember";
 import ListMember from "../pages/ListMember";
+import ExportExcel from "../pages/ExportExcel";
 
 function App() {
   const router = createBrowserRouter([
@@ -18,6 +19,10 @@ function App() {
     {
       path: "/ListMember",
       element: <ListMember />,
+    },
+    {
+      path: "/ExportExcel",
+      element: <ExportExcel />,
     },
   ]);
 

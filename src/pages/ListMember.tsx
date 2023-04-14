@@ -3,7 +3,8 @@ import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
-import ExportExcel from "../components/ExcelExport";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 
 import InputCustom from "../components/InputCustom";
 import Loader from "../components/Loader";
@@ -98,24 +99,27 @@ const ListMember = () => {
     setLoading(false);
   };
 
-  // console.log(filter);
+  const handleExportToExcel = () => {
+    const newFilter = filter.map((data, index) => {
+      delete data.id;
+      data.created_at = moment(data.created_at).format("MMMM Do YYYY, h:mm:ss a");
+      data.updated_at = moment(data.updated_at).format("MMMM Do YYYY, h:mm:ss a");
+      return {
+        no: index + 1, ...data,
+      }
+    })
 
-  const datas = [
-    { name: 'John', age: 25 },
-    { name: 'Jane', age: 30 },
-    { name: 'Bob', age: 35 },
-  ];
+    const worksheet = XLSX.utils.json_to_sheet(newFilter);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Data_Anggota");
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array"
+    });
+    saveAs(new Blob([excelBuffer], { type: "application/octet-stream" }), "DataAnggota.xlsx");
+  };
 
-  // const handleExport = () => {
-  //   const data = datas;
-  //   const header = ['Name', 'Age'];
-  //   const csvData = [header, ...data].map(e => e.join(',')).join('\n');
-
-  //   const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
-  //   saveAs(blob, 'data.csv');
-  // };
-
-  console.log("filter data :", filter)
+  // console.log("filter data :", filter)
 
   return (
     <Layout>
@@ -173,16 +177,10 @@ const ListMember = () => {
             <MdSearch className="h-8 w-8 text-color5" />
           </div>
         )}
-        <div className="mt-0 ml-auto flex h-10 gap-3 rounded-xl bg-color4 py-2 px-8 text-center text-[16px] font-medium text-color5 hover:cursor-pointer hover:bg-[rgba(13,206,218,0.7)]">
+        <div onClick={handleExportToExcel} className="mt-0 ml-auto flex h-10 gap-3 rounded-xl bg-color4 py-2 px-8 text-center text-[16px] font-medium text-color5 hover:cursor-pointer hover:bg-[rgba(13,206,218,0.7)]">
           <TfiPrinter className="h-5 w-5 text-color5" />
           Print to Excel
         </div>
-      </div>
-
-      <div>
-        <ExportExcel
-          excelData={datas}
-        />
       </div>
 
       <div className="m-auto my-8 w-full px-10">
