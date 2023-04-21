@@ -1,16 +1,20 @@
+import React, { useCallback, useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import moment from "moment";
+import axios from "axios";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
+
 import InputCustom from "../components/InputCustom";
+import Loader from "../components/Loader";
 import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
-
-import { MdSearch } from "react-icons/md";
-import { TfiPrinter } from "react-icons/tfi";
 import Footer from "../components/Footer";
-import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Loader from "../components/Loader";
-import { toast, ToastContainer } from "react-toastify";
-import moment from "moment";
+
+import { TfiPrinter } from "react-icons/tfi";
+import { MdSearch } from "react-icons/md";
+
 // import XLSX from "xlsx";
 
 // function exportToExcel(data: any) {
@@ -95,7 +99,28 @@ const ListMember = () => {
     setLoading(false);
   };
 
-  // console.log(filter);
+  const handleExportToExcel = () => {
+    const newFilter = filter.map((data, index) => {
+      delete data.id;
+      data.created_at = moment(data.created_at).format("MMMM Do YYYY, h:mm:ss a");
+      data.updated_at = moment(data.updated_at).format("MMMM Do YYYY, h:mm:ss a");
+      return {
+        no: index + 1, ...data,
+      }
+    })
+
+    const worksheet = XLSX.utils.json_to_sheet(newFilter);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Data_Anggota");
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array"
+    });
+    saveAs(new Blob([excelBuffer], { type: "application/octet-stream" }), "DataAnggota.xlsx");
+  };
+
+  // console.log("filter data :", filter)
+
   return (
     <Layout>
       {loading ? <Loader /> : <></>}
@@ -152,7 +177,7 @@ const ListMember = () => {
             <MdSearch className="h-8 w-8 text-color5" />
           </div>
         )}
-        <div className="mt-0 ml-auto flex h-10 gap-3 rounded-xl bg-color4 py-2 px-8 text-center text-[16px] font-medium text-color5 hover:cursor-pointer hover:bg-[rgba(13,206,218,0.7)]">
+        <div onClick={handleExportToExcel} className="mt-0 ml-auto flex h-10 gap-3 rounded-xl bg-color4 py-2 px-8 text-center text-[16px] font-medium text-color5 hover:cursor-pointer hover:bg-[rgba(13,206,218,0.7)]">
           <TfiPrinter className="h-5 w-5 text-color5" />
           Print to Excel
         </div>
