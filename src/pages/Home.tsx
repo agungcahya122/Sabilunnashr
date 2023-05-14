@@ -26,6 +26,7 @@ import User from "../assets/user.svg";
 import Adab from "../assets/adab.svg";
 import Meet from "../assets/meet.svg";
 import Bank from "../assets/bank.svg";
+import Bca from "../assets/bca.svg";
 import Add from "../assets/add.svg";
 
 import { AiOutlineClockCircle } from "react-icons/ai";
@@ -312,7 +313,7 @@ const Home = () => {
           <div className="mt-8 w-full pl-14 md:mt-8 md:w-full md:pl-64 lg:mt-0 lg:w-6/12 lg:pl-24">
             <div className="mt-5 ml-16 flex rounded-tl-2xl rounded-bl-2xl bg-color6 px-5 py-2 text-[24px] font-semibold shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] md:px-8 lg:px-8">
               <p className="pr-4 text-[28px] md:pr-14 md:text-[46px] lg:pr-14 lg:text-[46px]">
-                60
+                55
                 <span className="text-[20px] font-normal md:text-[28px] lg:text-[28px]">k</span>
               </p>
 
@@ -328,7 +329,7 @@ const Home = () => {
             </div>
             <div className="mt-5 ml-8 flex rounded-tl-2xl rounded-bl-2xl bg-color6 px-5 py-2 text-[24px] font-semibold shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] md:px-8 lg:px-8">
               <p className="mt-2 pr-2 text-[28px] md:pr-10 md:text-[46px] lg:pr-10 lg:text-[46px]">
-                140
+                130
                 <span className="text-[20px] font-normal md:text-[28px] lg:text-[28px]">k</span>
               </p>
 
@@ -349,7 +350,7 @@ const Home = () => {
                 <span className="text-[20px] font-normal no-underline md:text-[28px] lg:text-[28px]">k</span>
               </span>
               <span className="mt-2 pr-2 text-[28px] md:pr-8 md:text-[46px] lg:pr-8 lg:text-[46px]">
-                170
+                160
                 <span className="text-[20px] font-normal md:text-[28px] lg:text-[28px]">k</span>
               </span>
 
@@ -364,17 +365,26 @@ const Home = () => {
               </div>
             </div>
 
-            <p className="ml-20 mt-5 flex items-center rounded-tl-2xl rounded-bl-2xl bg-color6 px-5 py-3 text-[14px] font-semibold leading-7 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] md:px-14 md:text-[18px] lg:px-14 lg:text-[18px]">
+            <p className="ml-20 mt-5 flex items-center rounded-tl-2xl rounded-bl-2xl bg-color6 px-2 py-3 text-[14px] font-semibold leading-7 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] md:px-8 md:text-[18px] lg:px-8 lg:text-[18px]">
               <BsCircleFill className="mr-2 h-4 w-4 text-red-600" />
               Special Live in <span className="italic">G-Meet</span>
               <img src={Meet} alt="meet.svg" className="ml-5 hidden h-8 w-8 md:flex lg:flex" />
             </p>
 
-            <div className="ml-28 mt-5 hidden flex-row items-center gap-5 rounded-tl-2xl rounded-bl-2xl bg-color6 px-8 py-3 text-[16px] font-semibold leading-7 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] md:flex lg:flex">
-              <img src={Bank} alt="bank.svg" />
-              <p className="leading-6">
-                1154514796 <br /> <span className="font-normal">a.n Vigna Radiata PP</span>
-              </p>
+            <div className="ml-20 mt-5 hidden flex-row items-center gap-5 rounded-tl-2xl rounded-bl-2xl bg-color6 px-8 py-3 text-[16px] font-semibold leading-7 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] md:flex lg:flex">
+              <div >
+                <img src={Bank} alt="bank.svg" />
+                <p className="leading-6">
+                  1154514796 <br /> <span className="font-normal text-sm">a.n Vigna Radiata PP</span>
+                </p>
+              </div>
+
+              <div className="gap-3 border-l-2 border-color1 pl-4">
+                <img src={Bca} alt="bca.svg" className="h-10" />
+                <p className="leading-6">
+                  5470874513 <br /> <span className="font-normal text-sm">a.n Vigna Radiata Permana Putra</span>
+                </p>
+              </div>
             </div>
 
             <div className="ml-28 mt-5 flex-row items-center gap-5 rounded-tl-2xl rounded-bl-2xl bg-color6 px-6 py-2 text-[15px] font-semibold leading-7 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] md:hidden lg:hidden ">
@@ -394,11 +404,19 @@ const Home = () => {
           <li>Akhwat : ( 0859-6305-7535 )</li> */}
         </ul>
 
-        <div className="ml-2 mt-16 mb-14 flex flex-row items-center gap-5 text-[16px] font-semibold leading-7 md:hidden lg:hidden ">
+        <div className="ml-2 mt-16 mb-4 flex flex-row items-center gap-5 text-[16px] font-semibold leading-7 md:hidden lg:hidden ">
           <img src={Bank} alt="bank.svg" />
           <p className="leading-6">
             1154514796 <br />
             <span className="font-normal">a.n Vigna Radiata PP</span>
+          </p>
+        </div>
+
+        <div className="ml-2 mb-14 flex flex-row items-center gap-5 text-[16px] font-semibold leading-7 md:hidden lg:hidden ">
+          <img src={Bca} alt="bca.svg" className="h-10 mr-2" />
+          <p className="leading-6">
+            5470874513 <br />
+            <span className="font-normal">a.n Vigna Radiata Permana Putra</span>
           </p>
         </div>
 
