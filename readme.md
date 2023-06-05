@@ -71,11 +71,11 @@ npm run dev
 
 Domanhuri Malik Ilyas :
 
-[![GitHub](https://img.shields.io/badge/-Faizal-black?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dhomanhuri)
+[![GitHub](https://img.shields.io/badge/-Domanhuri-black?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dhomanhuri)
 
 M Alfin Fernanda :
 
-[![GitHub](https://img.shields.io/badge/-Faizal-black?style=for-the-badge&logo=github&logoColor=white)](https://github.com/alfin-nandha)
+[![GitHub](https://img.shields.io/badge/-Alfin-black?style=for-the-badge&logo=github&logoColor=white)](https://github.com/alfin-nandha)
 
 M Agung Cahya D:
 
