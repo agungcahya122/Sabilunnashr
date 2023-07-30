@@ -70,15 +70,15 @@ const ListMember = () => {
   };
 
   useEffect(() => {
-    fetchData("https://sabilun.promaydo-tech.com/api/event2");
+    fetchData("https://be.sabilunnashr.com/api/event3");
   }, []);
 
   const changeEvent = (e: React.ChangeEvent<HTMLSelectElement>) => {
     let urlEvent = "";
     if (e.target.value == "Ramadhan") {
-      urlEvent = "https://sabilun.promaydo-tech.com/api/ramadhan";
+      urlEvent = "https://be.sabilunnashr.com/api/ramadhan";
     } else if (e.target.value == "Kelas Intensif") {
-      urlEvent = "https://sabilun.promaydo-tech.com/api/event2";
+      urlEvent = "https://be.sabilunnashr.com/api/event3";
     }
     // console.log(urlEvent);
 
@@ -92,7 +92,7 @@ const ListMember = () => {
   const toDelete = async (data: any) => {
     // console.log(data.id);
     setLoading(true);
-    const { data: response } = await axios.delete("https://sabilun.promaydo-tech.com/api/event2/" + data.id);
+    const { data: response } = await axios.delete("https://be.sabilunnashr.com/api/event3/" + data.id);
     if (response.status == "success") {
       toast.warn("Berhasil Menghapus");
     }
@@ -105,16 +105,17 @@ const ListMember = () => {
       data.created_at = moment(data.created_at).format("MMMM Do YYYY, h:mm:ss a");
       data.updated_at = moment(data.updated_at).format("MMMM Do YYYY, h:mm:ss a");
       return {
-        no: index + 1, ...data,
-      }
-    })
+        no: index + 1,
+        ...data,
+      };
+    });
 
     const worksheet = XLSX.utils.json_to_sheet(newFilter);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Data_Anggota");
     const excelBuffer = XLSX.write(workbook, {
       bookType: "xlsx",
-      type: "array"
+      type: "array",
     });
     saveAs(new Blob([excelBuffer], { type: "application/octet-stream" }), "DataAnggota.xlsx");
   };
@@ -142,7 +143,7 @@ const ListMember = () => {
         </div>
       </div>
       <div className="mt-20 flex flex-col-reverse items-center justify-center px-4 md:flex-row md:px-10 lg:flex-row lg:px-20">
-        <div className="mt-8 flex w-[22rem] gap-2 rounded-full bg-color4 py-2 px-6 md:mt-0 lg:mt-0">
+        <div className="mt-8 flex w-[22rem] gap-2 rounded-full bg-color4 px-6 py-2 md:mt-0 lg:mt-0">
           <input
             onChange={(e) => setNameSearch(e.target.value)}
             id="input-search"
@@ -155,7 +156,7 @@ const ListMember = () => {
         {memberList[0]?.paket == null ? (
           <></>
         ) : (
-          <div className="ml-2 mt-8 flex w-[10rem] gap-2 rounded-full bg-color4 py-2 px-6 md:mt-0 lg:mt-0">
+          <div className="ml-2 mt-8 flex w-[10rem] gap-2 rounded-full bg-color4 px-6 py-2 md:mt-0 lg:mt-0">
             {/* <input
               onChange={(e) => setPaketSearch(e.target.value)}
               id="input-search"
@@ -170,14 +171,14 @@ const ListMember = () => {
               {/* <option selected value="Ramadhan">
               Ramadhan
             </option> */}
-              <option value="1">1 (Jarfisya Safinah)</option>
-              <option value="2">2 (Berakhlak Akidah Akhlak)</option>
-              <option value="3">3 Gabungan (Jarfisya+Berakhlak)</option>
+              {/* <option value="1">1 (Jarfisya Safinah)</option> */}
+              <option value="1">Level 2 </option>
+              <option value="2">Level 3 </option>
             </select>
             <MdSearch className="h-8 w-8 text-color5" />
           </div>
         )}
-        <div onClick={handleExportToExcel} className="mt-0 ml-auto flex h-10 gap-3 rounded-xl bg-color4 py-2 px-8 text-center text-[16px] font-medium text-color5 hover:cursor-pointer hover:bg-[rgba(13,206,218,0.7)]">
+        <div onClick={handleExportToExcel} className="ml-auto mt-0 flex h-10 gap-3 rounded-xl bg-color4 px-8 py-2 text-center text-[16px] font-medium text-color5 hover:cursor-pointer hover:bg-[rgba(13,206,218,0.7)]">
           <TfiPrinter className="h-5 w-5 text-color5" />
           Print to Excel
         </div>
